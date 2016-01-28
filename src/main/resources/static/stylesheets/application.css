@@ -1,0 +1,286 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require angular-material/angular-material.css
+*= require_self
+*/
+
+
+/* =============== Overriding Angular Material ================ */
+
+.md-toolbar {
+    box-shadow: 10px 10px #666666;
+}
+
+md-card md-card-content {
+    overflow: hidden;
+}
+
+md-content {
+    background-color: inherit;
+}
+
+.md-subhead {
+    padding-left: 16px;
+}
+
+.md-select-menu-container.md-active {
+    background-color: #ffffff;
+}
+
+.card {
+    /* background-color: #c2c2c2; */
+    min-width: 296px;
+    padding: 0px;
+}
+
+.card-media {
+    background-color: #c2c2c2;
+    border-radius: 26px;
+    float: right;
+    height: 52px;
+    margin-right: 12px;
+    margin-top: -28px;
+    width: 52px;
+}
+
+
+/* =============== Application specific style ================ */
+
+html,
+body {
+    background-color: #d6d6d6;
+}
+
+.app-view {
+    background-color: #d6d6d6;
+    padding-left: 36px;
+    padding-right: 36px;
+    width: 100%;
+}
+
+.app-view-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 4px;
+    margin-left: 12px;
+    width: 92%;
+}
+
+.app-title-button {
+    width: 10%;
+}
+
+.app-frame-container {
+    padding: 0;
+}
+
+.app-frame {
+    width: 288px;
+    height: 224px;
+}
+
+.app-list-item {
+    width: 98%;
+}
+
+.app-list-item:hover {
+    background-color: #c5cae9;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.app-view-title {
+    padding-top: 12px;
+}
+
+.app-frame:hover,
+.app-frame-title:hover,
+.app-frame-title-label:hover,
+.app-frame-content:hover,
+.app-frame-content-label:hover {
+    /* cursor: pointer; */
+}
+
+.app-frame-header {
+    background-color: #1a237e;
+    height: 42px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.app-frame-header-title {
+    width: 80%;
+}
+
+.app-icon-white {
+    color: #ffffff;
+}
+
+.app-frame-header-button {
+    margin-top: -12px;
+    width: 20%;
+}
+
+.app-frame-title-label {
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.app-frame-divider {
+    border-top: 0px solid #000000;
+    width: 100%;
+}
+
+.app-frame-content {
+    overflow: visible;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.app-frame-content-label {
+    font-weight: normal;
+}
+
+.app-bottle-picto {
+    background-image: url('/cave/images/bottles.png');
+    background-position: 4px 2px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 46px;
+    width: 46px;
+}
+
+.app-region-picto {
+    background-image: url('/cave/images/france.png');
+    background-position: 0px 3px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 47px;
+    width: 45px;
+}
+
+.app-dealer-picto {
+    background-image: url("/cave/images/winery.png");
+    background-position: 1px 4px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 48px;
+    width: 48px;
+}
+
+.app-wine-picto {
+    background-image: url("/cave/images/wine.png");
+    background-position: 7px 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 48px;
+    width: 48px;
+}
+
+.app-menu-picto {
+    background-image: url("/cave/images/menu.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+}
+
+
+/* Cards */
+
+.app-card-title {
+    background-color: #44a2c2;
+    padding: 8px;
+}
+
+.app-card-content-small {
+    min-height: 64px;
+    overflow: hidden;
+}
+
+.app-card-content-medium {
+    min-height: 208px;
+    overflow: hidden;
+}
+
+.app-icon-item {
+    margin: 16px;
+}
+
+
+/* forms (dialog) */
+
+.app-dialog-content {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.app-dialog-content-small,
+.app-dialog-content-large {
+    padding-bottom: 0px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 0px;
+    position: relative;
+}
+
+.app-dialog-content-small {
+    width: 268px;
+}
+
+.app-dialog-footer {
+    position: relative;
+}
+
+.app-dialog-small {
+    min-width: 340px;
+}
+
+.app-dialog-medium {
+    min-width: 480px;
+}
+
+.app-dialog-large {
+    min-height: 80%;
+    min-width: 640px;
+    width: 80%;
+}
+
+.app-dialog-xxl {
+    height: auto;
+    max-height: : 100%;
+    max-width: 100%;
+    min-height: 100%;
+    /* min-width: 640px; */
+    width: 100%;
+}
+
+
+/* icons */
+
+.app-icon-edit {
+    background-image: url("/cave/images/icons/edit.png");
+}
+
+.app-icon-trash {
+    background-image: url("/cave/images/icons/delete.svg");
+}
+
+.fieldlabel {
+    width: 108px;
+}
+
+.fieldvalue {
+    width: 200px;
+}
+
+.card-xl {
+    width: 340px;
+}

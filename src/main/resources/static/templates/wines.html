@@ -1,0 +1,40 @@
+<md-content layout-padding layout-wrap layout-fill>
+    <div layout="row">
+        <div class="md-headline app-view-title">Liste des vins disponibles</div>
+        <div class="app-title-button">
+            <md-button class="md-fab" aria-label="Ajouter un vin" ng-click="ctrl.createItem()">
+                <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
+            </md-button>
+        </div>
+    </div>
+    <div flex="auto" layout="row" layout-wrap>
+        <md-card class="card" ng-repeat="item in ctrl.items | orderBy:'name'">
+            <md-card-title class="app-card-title">
+                <md-card-title-text>
+                    <span class="md-headline">{{item.name}}</span>
+                    <br />
+                    <span class="md-subhead">Vin</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-title-media>
+                <div class="md-media-sm card-media">
+                    <div class="app-wine-picto"></div>
+                </div>
+            </md-card-title-media>
+            <md-card-content class="app-card-content-small">
+                <div layout="row">
+                    <div class="fieldlabel">Région</div>
+                    <div class="fieldvalue">{{item.region.name}}</div>
+                </div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end start">
+                <md-button class="md-fab md-mini" aria-label="Modifier" ng-click="ctrl.editItem(item)">
+                    <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>
+                </md-button>
+                <md-button class="md-fab md-mini" aria-label="Supprimer" ng-click="ctrl.deleteItem(item)">
+                    <md-icon md-svg-src="/cave/images/icons/delete.svg"></md-icon>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</md-content>

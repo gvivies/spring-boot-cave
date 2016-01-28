@@ -1,0 +1,42 @@
+<div class="bs-component">
+    <md-toolbar class="md-whiteframe-6dp" layout="row" layout-align="left center">
+        <div layout="row">
+            <md-menu md-offset="0 -5">
+                <md-button aria-label="Open interactions menu" class="md-icon-button" ng-click="menuCtrl.openMenu($mdOpenMenu, $event)">
+                    <md-icon md-menu-origin>
+                        <div class="app-menu-picto"></div>
+                    </md-icon>
+                </md-button>
+                <md-menu-content width="40">
+                    <md-menu-item>
+                        <md-button ng-click="menuCtrl.selectMenu(1)">
+                            {{menuCtrl.menuLabel[0]}}
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="menuCtrl.selectMenu(2)">
+                            {{menuCtrl.menuLabel[1]}}
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="menuCtrl.selectMenu(3)">
+                            {{menuCtrl.menuLabel[2]}}
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="menuCtrl.selectMenu(4)">
+                            {{menuCtrl.menuLabel[3]}}
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="menuCtrl.selectMenu(5)">
+                            {{menuCtrl.menuLabel[4]}}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <div class="md-toolbar-tools">{{menuCtrl.selectedMenuTitle}}</div>
+        </div>
+
+    </md-toolbar>
+</div>

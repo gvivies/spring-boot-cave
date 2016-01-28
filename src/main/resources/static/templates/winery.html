@@ -1,0 +1,61 @@
+<md-dialog class="app-dialog-{{form.size}}" aria-label="Détail du domaine" ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Détail du domaine</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="form.cancel()">
+                    <md-icon md-svg-src="/cave/images/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Nom</label>
+                    <input ng-model="form.item.name">
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Adresse</label>
+                    <input ng-model="form.item.street">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Code postal</label>
+                    <input ng-model="form.item.zipCode">
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Ville</label>
+                    <input ng-model="form.item.city">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Téléphone</label>
+                    <input ng-model="form.item.telephone">
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input ng-model="form.item.email">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Site web</label>
+                    <input ng-model="form.item.webSite">
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Commentaire</label>
+                    <input ng-model="form.item.comment">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions class="md-actions" layout="row" layout-align="space-around center">
+            <md-button ng-click="form.cancel()">Annuler</md-button>
+            <md-button ng-click="form.save()" style="margin-right:20px;">Enregistrer</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,64 @@
+<md-content layout-padding layout-wrap layout-fill>
+    <div layout="row">
+        <div class="md-headline app-view-title">Liste des domaines disponibles</div>
+        <div class="app-title-button">
+            <md-button class="md-fab" aria-label="Ajouter un domaine" ng-click="ctrl.createItem()">
+                <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
+            </md-button>
+        </div>
+    </div>
+    <div flex="auto" layout="row" layout-wrap>
+        <md-card class="card card-xl" ng-repeat="item in ctrl.items | orderBy:'name'">
+            <md-card-title class="app-card-title">
+                <md-card-title-text>
+                    <span class="md-headline">{{item.name}}</span>
+                    <br />
+                    <span class="md-subhead">Domaine</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-title-media>
+                <div class="md-media-sm card-media">
+                    <div class="app-dealer-picto"></div>
+                </div>
+            </md-card-title-media>
+            <md-card-content class="app-card-content-medium">
+                <div layout="row">
+                    <div class="fieldlabel">Adresse</div>
+                    <div class="fieldvalue">{{item.street}}</div>
+                </div>
+                <div layout="row">
+                    <div class="fieldlabel">Code postal</div>
+                    <div class="fieldvalue">{{item.zipCode}}</div>
+                </div>
+                <div layout="row">
+                    <div class="fieldlabel">Ville</div>
+                    <div class="fieldvalue">{{item.city}}</div>
+                </div>
+                <div layout="row">
+                    <div class="fieldlabel">Telephone</div>
+                    <div class="fieldvalue">{{item.telephone}}</div>
+                </div>
+                <div layout="row">
+                    <div class="fieldlabel">Email</div>
+                    <div class="fieldvalue">{{item.email}}</div>
+                </div>
+                <div layout="row">
+                    <div class="fieldlabel">Site web</div>
+                    <div class="fieldvalue">{{item.webSite}}</div>
+                </div>
+                <div layout="row">
+                    <div class="fieldlabel">Commentaire</div>
+                    <div class="fieldvalue">{{item.comment}}</div>
+                </div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end start">
+                <md-button class="md-fab md-mini" aria-label="Modifier" ng-click="ctrl.editItem(item)">
+                    <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>
+                </md-button>
+                <md-button class="md-fab md-mini" aria-label="Supprimer" ng-click="ctrl.deleteItem(item)">
+                    <md-icon md-svg-src="/cave/images/icons/delete.svg"></md-icon>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</md-content>

@@ -1,0 +1,67 @@
+<md-dialog class="app-dialog-{{form.size}}" aria-label="Détail des bouteilles" ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Détail des bouteilles</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="form.cancel()">
+                    <md-icon md-svg-src="/cave/images/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Nom</label>
+                    <input ng-model="form.item.name">
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Appellation</label>
+                    <md-select ng-model="form.item.wine" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une appellation" required>
+                        <md-option ng-value="w" ng-repeat="w in form.lists['wines']">{{ w.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Type</label>
+                    <md-select ng-model="form.item.classification" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un type" required>
+                        <md-option ng-value="classif" ng-repeat="classif in form.lists['classifications']">{{ classif.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Millésime</label>
+                    <input ng-model="form.item.year">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>A boire à partir de</label>
+                    <input ng-model="form.item.yearMin">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Jusqu'en</label>
+                    <input ng-model="form.item.yearMax">
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Quantité</label>
+                    <input ng-model="form.item.quantity">
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row">
+                <md-input-container flex>
+                    <label>Domaine</label>
+                    <md-select ng-model="form.item.dealer" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un domaine" required>
+                        <md-option ng-value="winery" ng-repeat="winery in form.lists['wineries']">{{ winery.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions class="md-actions" layout="row" layout-align="space-around center">
+            <md-button ng-click="form.cancel()">Annuler</md-button>
+            <md-button ng-click="form.save()" style="margin-right:20px;">Enregistrer</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

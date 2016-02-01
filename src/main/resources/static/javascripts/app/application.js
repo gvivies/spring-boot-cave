@@ -14,8 +14,13 @@
         //the message to be shown to the user
         message;
 
-    function defineRouting($routeProvider, $mdThemingProvider, $locationProvider) {
+    function defineRouting($routeProvider, $mdThemingProvider, $locationProvider, $httpProvider) {
         $routeProvider
+        /* .when('/login', {
+            templateUrl: 'templates/login.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'ctrl'
+        }) */
             .when('/regions', {
                 templateUrl: 'templates/regions.html',
                 controller: 'RegionsCtrl',
@@ -48,6 +53,8 @@
             .primaryPalette('indigo').accentPalette('pink');
 
         $locationProvider.html5Mode(false);
+
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     }
 
     angular.module('cave', ['ngRoute',
@@ -59,11 +66,12 @@
                             'util.service',
                             'form.service',
                             'confirm.service',
+                            'login.controller',
                             'regions.controller',
                             'bottles.controller',
                             'wines.controller',
                             'classifications.controller',
                             'wineries.controller'])
-        .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', defineRouting]);
+        .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', defineRouting]);
 
 }());

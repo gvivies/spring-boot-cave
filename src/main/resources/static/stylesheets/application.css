@@ -60,9 +60,29 @@ body {
 
 .app-view {
     background-color: #d6d6d6;
-    padding-left: 36px;
-    padding-right: 36px;
+    padding-left: 0px;
+    padding-right: 0px;
     width: 100%;
+}
+
+
+/* ----------- Non-Retina Screens ----------- */
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .app-view {
+        padding-left: 36px;
+        padding-right: 36px;
+    }
+}
+
+
+/* ----------- Retina Screens ----------- */
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    .app-view {
+        padding-left: 36px;
+        padding-right: 36px;
+    }
 }
 
 .app-view-title {

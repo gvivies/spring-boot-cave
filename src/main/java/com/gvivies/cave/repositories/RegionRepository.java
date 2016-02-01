@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface RegionRepository extends MongoRepository<Region, String> {
 	
-	public Region findByName();
+	public Region findByName(String name);
 	public List<Region> findAll();
 	
 }

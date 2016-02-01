@@ -8,7 +8,7 @@ import com.gvivies.cave.model.Dealer;
 
 public interface DealerRepository extends MongoRepository<Dealer, String> {
 
-	public Dealer findByName();
+	public Dealer findByName(String name);
 	public List<Dealer> findAll();
 	
 }

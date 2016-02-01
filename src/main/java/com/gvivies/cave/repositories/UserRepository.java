@@ -8,7 +8,7 @@ import com.gvivies.cave.model.User;
 
 public interface UserRepository extends MongoRepository<User, String>{
 
-	public User findByUsername();
+	public User findByUsername(String username);
 	public Optional<User> findOneByEmail(String email);
 
 }

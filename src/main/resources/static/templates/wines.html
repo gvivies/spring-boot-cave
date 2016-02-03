@@ -9,8 +9,14 @@
             </md-button>
         </div>
     </div>
+    <md-input-container flex>
+        <label>Région</label>
+        <md-select ng-model="ctrl.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région" required>
+            <md-option ng-value="reg" ng-repeat="reg in ctrl.regions">{{ reg.name }}</md-option>
+        </md-select>
+    </md-input-container>
     <div flex="auto" layout="row" layout-wrap>
-        <md-card class="card" ng-repeat="item in ctrl.items | orderBy:'name'">
+        <md-card class="card" ng-repeat="item in ctrl.items | filter:ctrl.filterWines | orderBy:'name'">
             <md-card-title class="app-card-title">
                 <md-card-title-text>
                     <span class="md-headline">{{item.name}}</span>

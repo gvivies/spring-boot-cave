@@ -35,8 +35,7 @@ md-content {
 }
 
 .card {
-    /* background-color: #c2c2c2; */
-    min-width: 296px;
+    min-width: 100%;
     padding: 0px;
 }
 
@@ -65,26 +64,6 @@ body {
     width: 100%;
 }
 
-
-/* ----------- Non-Retina Screens ----------- */
-
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    .app-view {
-        padding-left: 36px;
-        padding-right: 36px;
-    }
-}
-
-
-/* ----------- Retina Screens ----------- */
-
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    .app-view {
-        padding-left: 36px;
-        padding-right: 36px;
-    }
-}
-
 .app-view-title {
     font-weight: bold;
     margin-bottom: 8px;
@@ -94,7 +73,7 @@ body {
 }
 
 .app-title-button {
-    width: 10%;
+    width: 20%;
 }
 
 .app-frame-container {
@@ -303,4 +282,30 @@ body {
 
 .card-xl {
     width: 340px;
+}
+
+
+/* ----------- Non-Retina Screens ----------- */
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .app-view {
+        padding-left: 36px;
+        padding-right: 36px;
+    }
+    .card {
+        min-width: 296px;
+    }
+}
+
+
+/* ----------- Retina Screens ----------- */
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    .app-view {
+        padding-left: 36px;
+        padding-right: 36px;
+    }
+    .card {
+        min-width: 296px;
+    }
 }

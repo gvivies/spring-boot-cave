@@ -61,6 +61,10 @@
                 .then(removeItem);
         }
 
+        function filterWinesHandler(wine) {
+            return (viewModel.region == undefined || viewModel.region.name == wine.region.name);
+        }
+
         function initWineForm(listRegions) {
             formLists.push({
                 'name': 'regions',
@@ -74,11 +78,13 @@
                 lists: formLists
             };
         }
+
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
         viewModel.createItem = createItemHandler;
         viewModel.deleteItem = deleteItemHandler;
+        viewModel.filterWines = filterWinesHandler;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
@@ -86,7 +92,8 @@
         // --- On load
 
         viewModel.items = CrudService.resource(Constants.WINES_URI).list();
-        CrudService.resource(Constants.REGIONS_URI).list(initWineForm);
+        viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list(initWineForm);
+        viewModel.region = {};
 
     }
 

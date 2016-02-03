@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gvivies.cave.model.Wine;
 import com.gvivies.cave.repositories.WineRepository;
+import com.gvivies.cave.services.WineService;
 
 @RestController
 @RequestMapping("/wines")
@@ -21,9 +22,13 @@ public class WineController {
 	@Autowired
 	private WineRepository repository;
 	
+	@Autowired
+	private WineService service;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Wine> list() {
 		List<Wine> wines = repository.findAll();
+		//List<Wine> wines = service.findAllByRegion("");
 		return wines;
 	}
 	

@@ -284,6 +284,17 @@ body {
     width: 340px;
 }
 
+@media screen {
+    .app-view {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .layout-fill {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
 
 /* ----------- Non-Retina Screens ----------- */
 

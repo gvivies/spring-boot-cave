@@ -13,9 +13,11 @@
     angular.module('util.service', []);
 
     angular.module('message.directive', []);
-    
+
     angular.module('form.service', []);
-    
+
     angular.module('confirm.service', []);
+
+    angular.module('spinner.service', ['ngRoute']);
 
 })();

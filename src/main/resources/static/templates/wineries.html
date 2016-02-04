@@ -1,6 +1,6 @@
 <div app-menu></div>
 <div app-message></div>
-<md-content layout-padding layout-wrap layout-fill>
+<md-content class="app-main-content" layout-padding layout-wrap layout-fill>
     <div layout="row">
         <div class="md-headline app-view-title">Liste des domaines disponibles</div>
         <div class="app-title-button">
@@ -9,7 +9,7 @@
             </md-button>
         </div>
     </div>
-    <div flex="auto" layout="row" layout-wrap>
+    <div flex="auto" layout="row" layout-xs="column" layout-wrap>
         <md-card class="card card-xl" ng-repeat="item in ctrl.items | orderBy:'name'">
             <md-card-title class="app-card-title">
                 <md-card-title-text>

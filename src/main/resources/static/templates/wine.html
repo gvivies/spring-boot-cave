@@ -1,8 +1,8 @@
-<md-dialog class="app-dialog-{{form.size}}" aria-label="Détail du vin" ng-cloak>
+<md-dialog class="app-dialog-{{form.size}}" aria-label="Détail de l'appellation" ng-cloak>
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Détail du vin</h2>
+                <h2>Détail de l'appellation</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="form.cancel()">
                     <md-icon md-svg-src="/cave/images/icons/close.svg" aria-label="Close dialog"></md-icon>
@@ -10,13 +10,13 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div class="md-dialog-content app-dialog-content-large" layout="row">
+            <div class="md-dialog-content app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Nom</label>
                     <input ng-model="form.item.name">
                 </md-input-container>
             </div>
-            <div class="md-dialog-content app-dialog-content-small" layout="row">
+            <div class="md-dialog-content app-dialog-content-small" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Région</label>
                     <md-select ng-model="form.item.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région" required>

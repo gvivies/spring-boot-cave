@@ -10,13 +10,13 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div class="md-dialog-content app-dialog-content-large" layout="row">
+            <div class="md-dialog-content app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Nom</label>
                     <input ng-model="form.item.name">
                 </md-input-container>
             </div>
-            <div class="app-dialog-content-large" layout="row">
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Appellation</label>
                     <md-select ng-model="form.item.wine" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une appellation" required>
@@ -30,7 +30,7 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <div class="app-dialog-content-large" layout="row">
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Millésime</label>
                     <input ng-model="form.item.year">
@@ -44,13 +44,13 @@
                     <input ng-model="form.item.yearMax">
                 </md-input-container>
             </div>
-            <div class="app-dialog-content-large" layout="row">
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Quantité</label>
                     <input ng-model="form.item.quantity">
                 </md-input-container>
             </div>
-            <div class="app-dialog-content-large" layout="row">
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Domaine</label>
                     <md-select ng-model="form.item.dealer" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un domaine" required>

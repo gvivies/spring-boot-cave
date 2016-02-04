@@ -1,6 +1,6 @@
 <div app-menu></div>
 <div app-message></div>
-<md-content layout-padding layout-wrap layout-fill>
+<md-content class="app-main-content" layout-padding layout-wrap layout-fill>
     <div layout="row">
         <div class="md-headline app-view-title">Liste des bouteilles disponibles</div>
         <div class="app-title-button">
@@ -9,7 +9,7 @@
             </md-button>
         </div>
     </div>
-    <div flex="auto" layout="row" layout-wrap>
+    <div flex="auto" layout="row" layout-xs="column" layout-wrap>
         <md-card class="card" ng-repeat="item in ctrl.items | orderBy:'name'">
             <md-card-title class="app-card-title">
                 <md-card-title-text>
@@ -24,23 +24,23 @@
                 </div>
             </md-card-title-media>
             <md-card-content class="app-card-content-small">
-                <div layout="row">
+                <div layout="row" layout-xs="column">
                     <div class="fieldlabel">Appellation</div>
                     <div class="fieldvalue">{{item.wine.name}}</div>
                     <div class="fieldlabel">Type</div>
                     <div class="fieldvalue">{{item.classification.name}}</div>
                 </div>
-                <div layout="row">
+                <div layout="row" layout-xs="column">
                     <div class="fieldlabel">Millésime</div>
                     <div class="fieldvalue">{{item.year}}</div>
                     <div class="fieldlabel">A boire</div>
                     <div class="fieldvalue">entre {{item.yearMin}} et {{item.yearMax}}</div>
                 </div>
-                <div layout="row">
+                <div layout="row" layout-xs="column">
                     <div class="fieldlabel">Quantité</div>
                     <div class="fieldvalue">{{item.quantity}}</div>
                 </div>
-                <div layout="row">
+                <div layout="row" layout-xs="column">
                     <div class="fieldlabel">Domaine</div>
                     <div class="fieldvalue">{{item.dealer.name}}</div>
                 </div>

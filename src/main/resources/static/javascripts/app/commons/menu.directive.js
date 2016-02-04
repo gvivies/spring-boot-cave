@@ -12,33 +12,43 @@
             controllerAs: 'menuCtrl',
             controller: function ($scope, $attrs, $location, MenuService) {
 
-                this.menuLabel = ['Bouteilles', 'Vins', 'Régions', 'Domaines', 'Classifications'];
-                this.selectedMenuTitle = 'Gérer les bouteilles';
-                this.openMenu = function ($mdOpenMenu, ev) {
+                function openMenu($mdOpenMenu, ev) {
                     $mdOpenMenu(ev);
                 };
 
-                this.selectMenu = function (idx) {
-                    var menuTitle = 'Bienvenue sur ma cave personnelle';
+                function selectMenu(idx) {
+                    var menuTitle = 'Bienvenue sur ma cave personnelle',
+                        nextUri;
                     if (idx === 1) {
                         menuTitle = 'Gérer les bouteilles';
-                        $location.path('bottles');
+                        nextUri = 'bottles';
                     } else if (idx === 2) {
-                        menuTitle = 'Gérer les vins';
-                        $location.path('wines');
+                        menuTitle = 'Gérer les appellations';
+                        nextUri = 'wines';
                     } else if (idx === 3) {
                         menuTitle = 'Gérer les régions';
-                        $location.path('regions');
+                        nextUri = 'regions';
                     } else if (idx === 4) {
                         menuTitle = 'Gérer les domaines';
-                        $location.path('wineries');
+                        nextUri = 'wineries';
                     } else if (idx === 5) {
                         menuTitle = 'Gérer les classifications';
-                        $location.path('classifications');
+                        nextUri = 'classifications';
                     }
                     MenuService.setActive(idx);
-                    this.selectedMenuTitle = menuTitle;
+                    menuVM.selectedMenuTitle = menuTitle;
+                    $location.path(nextUri);
                 };
+
+                var menuVM = this;
+
+                menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Classifications'];
+                menuVM.openMenu = openMenu;
+                menuVM.selectMenu = selectMenu;
+
+                if (MenuService.getActive() == undefined) {
+                    menuVM.selectedMenuTitle = 'Gérer les bouteilles';
+                }
             },
             link: function (scope, element, attributes) {
 

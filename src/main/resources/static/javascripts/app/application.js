@@ -66,6 +66,7 @@
                             'util.service',
                             'form.service',
                             'confirm.service',
+                            'spinner.service',
                             'login.controller',
                             'regions.controller',
                             'bottles.controller',

@@ -109,6 +109,8 @@
             lists: formLists
         };
 
+        $scope.$emit(Constants.SHOW_MENU_EVENT);
+
     }
 
 }());

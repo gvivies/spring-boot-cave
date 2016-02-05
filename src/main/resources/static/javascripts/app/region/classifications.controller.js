@@ -78,6 +78,7 @@
             template: "classification.html",
             uri: Constants.CLASSIFICATIONS_URI
         };
+        $scope.$emit(Constants.SHOW_MENU_EVENT);
 
     }
 

@@ -50,11 +50,10 @@
             });
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('indigo').accentPalette('pink');
-
+            .primaryPalette('indigo').accentPalette('grey');
         $locationProvider.html5Mode(false);
-
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
     }
 
     angular.module('cave', ['ngRoute',

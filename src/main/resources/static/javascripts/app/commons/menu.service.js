@@ -13,12 +13,13 @@
             return this.menuItem;
         };
 
-        service.setActive = function setActive(value) {
+        service.setActive = function setActive(value, title) {
             this.menuItem = value;
-            this.broadcastMenuSelectedEvent();
+            this.broadcastMenuSelectedEvent(title);
         };
 
-        service.broadcastMenuSelectedEvent = function broadcastMenuSelectedEvent() {
+        service.broadcastMenuSelectedEvent = function broadcastMenuSelectedEvent(title) {
+            $rootScope.selectedMenuTitle = title;
             $rootScope.$broadcast('MenuSelectedEvent');
         };
 

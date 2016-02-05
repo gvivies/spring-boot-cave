@@ -50,6 +50,8 @@
             });
         }
 
+        locals.scope.$emit(Constants.HIDE_MENU_EVENT);
+
         // --- Internal directive functions
 
         function onEditItemEventHandler(event, item) {
@@ -59,7 +61,7 @@
         function onCreateSuccess(data) {
             formVM.item.id = data.id;
             locals.scope.$emit(Constants.CREATED_ITEM_EVENT, formVM.item);
-            $mdDialog.hide();
+            closeDialogHandler();
         }
 
         function onCreateError(response) {
@@ -68,7 +70,7 @@
 
         function onUpdateSuccess() {
             locals.scope.$emit(Constants.UPDATED_ITEM_EVENT, formVM.item);
-            $mdDialog.hide();
+            closeDialogHandler();
         }
 
         function onUpdateError(response) {
@@ -78,10 +80,7 @@
         // --- Available UI functions
 
         function closeDialogHandler() {
-            $mdDialog.hide();
-        }
-
-        function cancelHandler() {
+            locals.scope.$emit(Constants.SHOW_MENU_EVENT);
             $mdDialog.hide();
         }
 
@@ -93,13 +92,12 @@
                 CrudService.resource(formVM.uri)
                     .create(formVM.item, onCreateSuccess, onCreateError);
             }
-            $mdDialog.hide();
         }
 
         // --- Attaching functions to view Model
 
         formVM.closeDialog = closeDialogHandler;
-        formVM.cancel = cancelHandler;
+        formVM.cancel = closeDialogHandler;
         formVM.save = saveHandler;
 
         // --- Event handlers

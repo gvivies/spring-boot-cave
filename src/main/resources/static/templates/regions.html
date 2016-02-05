@@ -1,8 +1,6 @@
-<div app-menu></div>
-<div app-message></div>
 <md-content class="app-main-content" layout-padding layout-wrap layout-fill>
     <div layout="row">
-        <div class="md-headline app-view-title">Liste des régions disponibles</div>
+        <span flex></span>
         <div class="app-title-button">
             <md-button class="md-fab" aria-label="Ajouter une région" ng-click="ctrl.createItem()">
                 <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
@@ -25,11 +23,11 @@
             </md-card-title-media>
             <md-card-content class="app-card-content-small">
             </md-card-content>
-            <md-card-actions layout="row" layout-align="end start">
-                <md-button class="md-fab md-mini" aria-label="Modifier" ng-click="ctrl.editItem(item)">
+            <md-card-actions layout="row" layout-align="space-around start">
+                <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>
                 </md-button>
-                <md-button class="md-fab md-mini" aria-label="Supprimer" ng-click="ctrl.deleteItem(item)">
+                <md-button class="md-cornered" aria-label="Supprimer" ng-click="ctrl.deleteItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/delete.svg"></md-icon>
                 </md-button>
             </md-card-actions>

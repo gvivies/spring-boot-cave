@@ -18,6 +18,11 @@
     box-shadow: 10px 10px #666666;
 }
 
+.md-toolbar-tools {
+    height: 64px;
+    max-height: 64px;
+}
+
 md-card md-card-content {
     overflow: hidden;
 }
@@ -69,6 +74,7 @@ body {
 
 .app-menu-bar {
     position: fixed;
+    z-index: 90;
 }
 
 .app-main-content {
@@ -90,7 +96,7 @@ body {
 }
 
 .app-title-button {
-    width: 20%;
+    margin-right: 12px;
 }
 
 .app-frame-container {
@@ -299,14 +305,12 @@ body {
 /* ----------- Non-Retina Screens ----------- */
 
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    .app-menu-bar {
-        position: inherit;
-    }
     .app-main-content {
         padding-top: 0px;
     }
     .card {
         min-width: 296px;
+        width: 296px;
     }
     .app-view-title {
         margin-left: 12px;
@@ -336,14 +340,12 @@ body {
 /* ----------- Retina Screens ----------- */
 
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    .app-menu-bar {
-        position: inherit;
-    }
     .app-main-content {
         padding-top: 0px;
     }
     .card {
         min-width: 296px;
+        width: 296px;
     }
     .app-view-title {
         margin-left: 12px;

@@ -94,7 +94,7 @@
         viewModel.items = CrudService.resource(Constants.WINES_URI).list();
         viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list(initWineForm);
         viewModel.region = {};
-
+        $scope.$emit(Constants.SHOW_MENU_EVENT);
     }
 
 }());

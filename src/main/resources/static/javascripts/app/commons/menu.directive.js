@@ -10,45 +10,52 @@
             replace: true,
             templateUrl: 'templates/menu.html',
             controllerAs: 'menuCtrl',
-            controller: function ($scope, $attrs, $location, MenuService) {
+            controller: function ($scope, $attrs, $location, MenuService, Constants) {
+
+                function onShowMenuEventHandler() {
+                    menuVM.displayMenu = true;
+                }
+
+                function onHideMenuEventHandler() {
+                    menuVM.displayMenu = false;
+                }
 
                 function openMenu($mdOpenMenu, ev) {
                     $mdOpenMenu(ev);
-                };
+                }
 
                 function selectMenu(idx) {
                     var menuTitle = 'Bienvenue sur ma cave personnelle',
                         nextUri;
                     if (idx === 1) {
-                        menuTitle = 'Gérer les bouteilles';
+                        menuTitle = 'Les bouteilles';
                         nextUri = 'bottles';
                     } else if (idx === 2) {
-                        menuTitle = 'Gérer les appellations';
+                        menuTitle = 'Les appellations';
                         nextUri = 'wines';
                     } else if (idx === 3) {
-                        menuTitle = 'Gérer les régions';
+                        menuTitle = 'Les régions';
                         nextUri = 'regions';
                     } else if (idx === 4) {
-                        menuTitle = 'Gérer les domaines';
+                        menuTitle = 'Les domaines';
                         nextUri = 'wineries';
                     } else if (idx === 5) {
-                        menuTitle = 'Gérer les classifications';
+                        menuTitle = 'Les types';
                         nextUri = 'classifications';
                     }
-                    MenuService.setActive(idx);
-                    menuVM.selectedMenuTitle = menuTitle;
                     $location.path(nextUri);
-                };
+                    MenuService.setActive(idx, menuTitle);
+                }
 
                 var menuVM = this;
 
-                menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Classifications'];
+                menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Types'];
                 menuVM.openMenu = openMenu;
                 menuVM.selectMenu = selectMenu;
 
-                if (MenuService.getActive() == undefined) {
-                    menuVM.selectedMenuTitle = 'Gérer les bouteilles';
-                }
+                $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
+                $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
+
             },
             link: function (scope, element, attributes) {
 

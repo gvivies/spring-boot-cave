@@ -78,7 +78,7 @@
             template: "region.html",
             uri: Constants.REGIONS_URI
         };
-
+        $scope.$emit(Constants.SHOW_MENU_EVENT);
     }
 
 }());

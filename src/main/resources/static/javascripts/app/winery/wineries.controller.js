@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('wineries.controller', [])
-        .controller('WineriesCtrl', ['$scope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', WineriesCtrl]);
+        .controller('WineriesCtrl', WineriesCtrl);
 
     WineriesCtrl.$inject = ['$scope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
 
@@ -74,6 +74,8 @@
             template: "winery.html",
             uri: Constants.WINERIES_URI
         };
+        $scope.$emit(Constants.SHOW_MENU_EVENT);
+
     }
 
 }());

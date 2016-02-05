@@ -1,6 +1,6 @@
-<div class="bs-component">
+<div class="bs-component" ng-show="menuCtrl.displayMenu">
     <md-toolbar class="md-whiteframe-6dp app-menu-bar" layout="row" layout-align="left center">
-        <div layout="row">
+        <div layout="row" ng-show="menuCtrl.displayMenu">
             <md-menu md-offset="0 -5">
                 <md-button aria-label="Open interactions menu" class="md-icon-button" ng-click="menuCtrl.openMenu($mdOpenMenu, $event)">
                     <md-icon md-menu-origin>
@@ -35,7 +35,7 @@
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
-            <div class="md-toolbar-tools">{{menuCtrl.selectedMenuTitle}}</div>
+            <div class="md-toolbar-tools">{{selectedMenuTitle}}</div>
         </div>
     </md-toolbar>
 </div>

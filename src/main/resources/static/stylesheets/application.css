@@ -97,6 +97,8 @@ body {
 
 .app-title-button {
     margin-right: 12px;
+    margin-top: -3px;
+    z-index: 91;
 }
 
 .app-frame-container {
@@ -297,7 +299,7 @@ body {
 .big-info {
     font-weight: bold;
     font-size: 24px;
-    padding-top: 9px;
+    padding-top: 10px;
     text-align: center;
 }
 

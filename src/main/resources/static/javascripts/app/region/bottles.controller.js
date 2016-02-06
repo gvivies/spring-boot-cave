@@ -7,16 +7,24 @@
     angular.module('bottles.controller', [])
         .controller('BottlesCtrl', BottlesCtrl);
 
-    BottlesCtrl.$inject = ['$scope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
+    BottlesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
 
-    function BottlesCtrl($scope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
+    function BottlesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
 
         var viewModel = this,
             listWines = [],
             listWineries = [],
             listClassifications = [],
             formLists = [];
+
         // --- Handler functions 
+        function onShowMenuEventHandler() {
+            viewModel.displayMenu = true;
+        }
+
+        function onHideMenuEventHandler() {
+            viewModel.displayMenu = false;
+        }
 
         function createItemHandler() {
             FormService.showForm($scope, {}, viewModel.formSettings);
@@ -40,9 +48,7 @@
         }
 
         function deleteItemHandler(item) {
-
             function removeItem() {
-
                 function onRemoveError() {
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la suppression de " + item.name);
                 }
@@ -53,19 +59,15 @@
                     itemList.splice(idx, 1);
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La suppression de " + item.name + " a été effectuée avec succès");
                 }
-
                 CrudService.resource(Constants.BOTTLES_URI + '/' + item.id)
                     .remove(onRemoveSuccess, onRemoveError);
             }
-
             ConfirmService.confirmDelete(item, 'les bouteills')
                 .then(removeItem);
         }
 
         function drinkHandler(item) {
-
             function drinkOne() {
-
                 function onDrinkError() {
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la modification du nombre de bouteilles");
                 }
@@ -91,6 +93,8 @@
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
+        $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
+        $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
 
         // --- On load
 
@@ -130,7 +134,7 @@
             lists: formLists
         };
 
-        $scope.$emit(Constants.SHOW_MENU_EVENT);
+        $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);
 
     }
 

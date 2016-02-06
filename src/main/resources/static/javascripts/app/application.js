@@ -1,4 +1,3 @@
-//= require jquery-2.1.3
 //= require_tree lib
 //= require_tree commons
 //= require_tree region
@@ -54,6 +53,7 @@
         $locationProvider.html5Mode(false);
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
+
     }
 
     angular.module('cave', ['ngRoute',
@@ -72,6 +72,8 @@
                             'wines.controller',
                             'classifications.controller',
                             'wineries.controller'])
-        .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', defineRouting]);
-
+        .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', defineRouting])
+        .run(function ($rootScope, Constants) {
+            $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);
+        });
 }());

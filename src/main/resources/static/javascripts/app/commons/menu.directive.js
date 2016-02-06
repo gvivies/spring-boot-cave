@@ -10,7 +10,7 @@
             replace: true,
             templateUrl: 'templates/menu.html',
             controllerAs: 'menuCtrl',
-            controller: function ($scope, $attrs, $location, MenuService, Constants) {
+            controller: function ($scope, $rootScope, $attrs, $location, MenuService, Constants) {
 
                 function onShowMenuEventHandler() {
                     menuVM.displayMenu = true;

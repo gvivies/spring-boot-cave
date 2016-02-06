@@ -61,15 +61,7 @@
             var itemlist = formVM.lists[domain],
                 results = query ? itemlist.filter(createFilterFor(query)) : itemlist,
                 deferred;
-            /* if (self.simulateQuery) {
-                deferred = $q.defer();
-                $timeout(function () {
-                    deferred.resolve(results);
-                }, Math.random() * 1000, false);
-                return deferred.promise;
-            } else { */
             return results;
-            //}
         }
 
         /**

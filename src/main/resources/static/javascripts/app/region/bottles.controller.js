@@ -62,11 +62,32 @@
                 .then(removeItem);
         }
 
+        function drinkHandler(item) {
+
+            function drinkOne() {
+
+                function onDrinkError() {
+                    $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la modification du nombre de bouteilles");
+                }
+
+                function onDrinkSuccess(data) {
+                    $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une bouteille a été enlevée avec succès !");
+                    item.quantity = data.quantity;
+                }
+                CrudService.resource(Constants.DRINK_BOTTLE_URI)
+                    .update(item, onDrinkSuccess, onDrinkError);
+            }
+
+            ConfirmService.confirmDrink(item)
+                .then(drinkOne);
+        }
+
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
         viewModel.createItem = createItemHandler;
         viewModel.deleteItem = deleteItemHandler;
+        viewModel.drink = drinkHandler;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);

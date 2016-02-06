@@ -16,11 +16,22 @@
                 .ariaLabel('Suppression' + item.name)
                 .ok('Supprimer')
                 .cancel('Annuler');
+            return $mdDialog.show(dialogBox);
+        }
 
+        function confirmDrink(item) {
+            var text = "Confirmez-vous l'ouverture d'une bouteille de " + item.name + " ?",
+                dialogBox = $mdDialog.confirm()
+                .title('Etes vous sûr ?')
+                .content(text)
+                .ariaLabel('Boire une bouteille de ' + item.name)
+                .ok('Boire')
+                .cancel('Annuler');
             return $mdDialog.show(dialogBox);
         }
 
         service.confirmDelete = confirmDelete;
+        service.confirmDrink = confirmDrink;
 
         return service;
     }

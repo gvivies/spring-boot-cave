@@ -23,6 +23,8 @@
                         <md-option ng-value="w" ng-repeat="w in form.lists['wines']">{{ w.name }}</md-option>
                     </md-select>
                 </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Type</label>
                     <md-select ng-model="form.item.classification" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un type" required>
@@ -35,10 +37,14 @@
                     <label>Millésime</label>
                     <input ng-model="form.item.year">
                 </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>A boire à partir de</label>
                     <input ng-model="form.item.yearMin">
                 </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Jusqu'en</label>
                     <input ng-model="form.item.yearMax">

@@ -6,6 +6,7 @@ import com.gvivies.cave.model.Wine;
 
 public interface WineService {
 
+	public List<Wine> findAll(); 
 	public List<Wine> findAllByRegion(String region); 
 	
 }

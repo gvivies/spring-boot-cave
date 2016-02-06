@@ -13,37 +13,32 @@
                 <md-card-title-text>
                     <span class="md-headline">{{item.name}}</span>
                     <br />
-                    <span class="md-subhead">{{item.containing}}</span>
+                    <span class="md-subhead">{{item.wine.name}}</span>
                 </md-card-title-text>
+                <span flex></span>
             </md-card-title>
             <md-card-title-media>
                 <div class="md-media-sm card-media">
-                    <div class="app-bottle-picto"></div>
+                    <!--<div class="app-bottle-picto"></div> -->
+                    <div class="big-info">{{item.quantity}}</div>
                 </div>
             </md-card-title-media>
             <md-card-content class="app-card-content-small">
                 <div layout="row" layout-xs="column">
-                    <div class="fieldlabel">Appellation</div>
-                    <div class="fieldvalue">{{item.wine.name}}</div>
-                    <div class="fieldlabel">Type</div>
-                    <div class="fieldvalue">{{item.classification.name}}</div>
+                    <div flex class="fieldlabel">Type</div>
+                    <div flex class="fieldvalue">{{item.classification.name}}</div>
+                    <div flex class="fieldlabel">Millésime</div>
+                    <div flex class="fieldvalue">{{item.year}}</div>
                 </div>
                 <div layout="row" layout-xs="column">
-                    <div class="fieldlabel">Millésime</div>
-                    <div class="fieldvalue">{{item.year}}</div>
-                    <div class="fieldlabel">A boire</div>
-                    <div class="fieldvalue">entre {{item.yearMin}} et {{item.yearMax}}</div>
-                </div>
-                <div layout="row" layout-xs="column">
-                    <div class="fieldlabel">Quantité</div>
-                    <div class="fieldvalue">{{item.quantity}}</div>
-                </div>
-                <div layout="row" layout-xs="column">
-                    <div class="fieldlabel">Domaine</div>
-                    <div class="fieldvalue">{{item.dealer.name}}</div>
+                    <div flex class="fieldlabel">A boire</div>
+                    <div flex class="fieldvalue">entre {{item.yearMin}} et {{item.yearMax}}</div>
                 </div>
             </md-card-content>
             <md-card-actions layout="row" layout-align="space-around start">
+                <md-button class="md-cornered" aria-label="Boire" ng-click="ctrl.drink(item)">
+                    <md-icon md-svg-src="/cave/images/icons/drink.svg"></md-icon>
+                </md-button>
                 <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>
                 </md-button>

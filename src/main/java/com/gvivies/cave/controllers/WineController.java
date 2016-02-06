@@ -27,7 +27,8 @@ public class WineController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Wine> list() {
-		List<Wine> wines = repository.findAll();
+		List<Wine> wines = service.findAll();
+		//List<Wine> wines = repository.findAll();
 		//List<Wine> wines = service.findAllByRegion("");
 		return wines;
 	}

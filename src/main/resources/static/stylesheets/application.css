@@ -282,12 +282,23 @@ body {
     background-image: url("/cave/images/icons/delete.svg");
 }
 
+.app-icon-drink {
+    background-image: url("/cave/images/icons/drink.svg");
+}
+
 .fieldlabel {
-    width: 108px;
+    min-width: 108px;
 }
 
 .fieldvalue {
-    width: 200px;
+    min-width: 200px;
+}
+
+.big-info {
+    font-weight: bold;
+    font-size: 24px;
+    padding-top: 9px;
+    text-align: center;
 }
 
 .card-xl {

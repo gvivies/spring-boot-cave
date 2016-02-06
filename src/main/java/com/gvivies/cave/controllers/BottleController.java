@@ -46,4 +46,11 @@ public class BottleController {
 			repository.delete(bottle);
 		}	 
 	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/drink")
+	public Bottle drink(@RequestBody Bottle bottle) {
+		bottle.setQuantity(bottle.getQuantity() - 1);
+		repository.save(bottle);				
+		return bottle;
+	} 
 }

@@ -8,6 +8,7 @@
         "REGIONS_URI": "regions",
         "WINES_URI": "wines",
         "BOTTLES_URI": "bottles",
+        "DRINK_BOTTLE_URI": "bottles/drink",
         "WINERIES_URI": "dealers",
         "CLASSIFICATIONS_URI": "classifications",
         "EDIT_ITEM_EVENT": "EDIT_ITEM_EVENT",

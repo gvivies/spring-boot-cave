@@ -54,6 +54,35 @@
 
         // --- Internal directive functions
 
+        /**
+         * Material angular : dynamic search 
+         */
+        function querySearch(query, domain) {
+            var itemlist = formVM.lists[domain],
+                results = query ? itemlist.filter(createFilterFor(query)) : itemlist,
+                deferred;
+            /* if (self.simulateQuery) {
+                deferred = $q.defer();
+                $timeout(function () {
+                    deferred.resolve(results);
+                }, Math.random() * 1000, false);
+                return deferred.promise;
+            } else { */
+            return results;
+            //}
+        }
+
+        /**
+         * Material angular : Create filter function for a query string
+         */
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+            return function filterFn(item) {
+                var searched = angular.lowercase(item.name);
+                return (searched.indexOf(lowercaseQuery) === 0);
+            };
+        }
+
         function onEditItemEventHandler(event, item) {
             formVM.item = item;
         }
@@ -99,6 +128,7 @@
         formVM.closeDialog = closeDialogHandler;
         formVM.cancel = closeDialogHandler;
         formVM.save = saveHandler;
+        formVM.querySearch = querySearch;
 
         // --- Event handlers
 

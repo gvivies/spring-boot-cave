@@ -19,20 +19,16 @@
             </md-card-title>
             <md-card-title-media>
                 <div class="md-media-sm card-media">
-                    <!--<div class="app-bottle-picto"></div> -->
                     <div class="big-info">{{item.quantity}}</div>
                 </div>
             </md-card-title-media>
             <md-card-content class="app-card-content-small">
                 <div layout="row" layout-xs="column">
-                    <div flex class="fieldlabel">Type</div>
-                    <div flex class="fieldvalue">{{item.classification.name}}</div>
-                    <div flex class="fieldlabel">Millésime</div>
-                    <div flex class="fieldvalue">{{item.year}}</div>
+                    <div flex class="fieldvalue medium-info">{{item.classification.name}}</div>
+                    <div flex class="fieldvalue medium-info">{{item.year}}</div>
                 </div>
                 <div layout="row" layout-xs="column">
-                    <div flex class="fieldlabel">A boire</div>
-                    <div flex class="fieldvalue">entre {{item.yearMin}} et {{item.yearMax}}</div>
+                    <div flex class="fieldlabel">A boire entre {{item.yearMin}} et {{item.yearMax}}</div>
                 </div>
             </md-card-content>
             <md-card-actions layout="row" layout-align="space-around start">

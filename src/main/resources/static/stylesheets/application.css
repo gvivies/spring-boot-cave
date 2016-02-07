@@ -98,6 +98,7 @@ body {
 .app-title-button-container {
     float: right;
     position: fixed;
+    top: 100%;
     width: 100%;
     z-index: 91;
 }
@@ -107,8 +108,8 @@ body {
     margin-right: 12px;
     margin-top: -66px;
     top: 0;
-    right: 0;    
-    z-index: 92;
+    right: 0;
+    z-index: 100;
 }
 
 .app-frame-container {

@@ -12,7 +12,15 @@
     function WineriesCtrl($scope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
 
         var viewModel = this;
+
         // --- Handler functions 
+        function onShowMenuEventHandler() {
+            viewModel.displayMenu = true;
+        }
+
+        function onHideMenuEventHandler() {
+            viewModel.displayMenu = false;
+        }
 
         function createItemHandler() {
             FormService.showForm($scope, {}, viewModel.formSettings);
@@ -66,6 +74,9 @@
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
+        $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
+        $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
+
         // --- On load
 
         viewModel.items = CrudService.resource(Constants.WINERIES_URI).list();

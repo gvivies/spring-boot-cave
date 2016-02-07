@@ -95,10 +95,20 @@ body {
     margin-left: 12px;
 }
 
-.app-title-button {
-    margin-right: 12px;
-    margin-top: -3px;
+.app-title-button-container {
+    float: right;
+    position: fixed;
+    width: 100%;
     z-index: 91;
+}
+
+.app-title-button {
+    position: absolute;
+    margin-right: 12px;
+    margin-top: -66px;
+    top: 0;
+    right: 0;    
+    z-index: 92;
 }
 
 .app-frame-container {

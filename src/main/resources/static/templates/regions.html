@@ -17,11 +17,14 @@
             </md-card-title>
             <md-card-title-media>
                 <div class="md-media-sm card-media">
-                    <div class="app-region-picto"></div>
+                    <div class="app-region-picto">
+                        <div class="region-count">{{item.quantity}}</div>
+                    </div>
                 </div>
             </md-card-title-media>
+            <!--
             <md-card-content class="app-card-content-small">
-            </md-card-content>
+            </md-card-content> -->
             <md-card-actions layout="row" layout-align="space-around start">
                 <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>

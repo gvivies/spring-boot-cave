@@ -47,15 +47,12 @@ public class WineServiceImpl implements WineService {
 
 	@Override
 	public List<Wine> findAll() {
-
 		List<Wine> wines = new ArrayList<Wine>();
-
 		Query query = Query.query(new Criteria());
 		query.with(new Sort(Sort.Direction.ASC, "name"));
 		List<Wine> winesOfRegion = mongoTemplate.find(query, Wine.class);
 		wines.addAll(winesOfRegion);
 		return wines;
-
 	}
 
 	private List<Region> retrieveRegions(String region) {

@@ -1,6 +1,7 @@
 package com.gvivies.cave.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gvivies.cave.model.Region;
 import com.gvivies.cave.repositories.RegionRepository;
+import com.gvivies.cave.services.RegionService;
 
 @RestController
 @RequestMapping("/regions")
@@ -20,6 +22,9 @@ public class RegionController {
 
 	@Autowired
 	private RegionRepository repository;
+
+	@Autowired
+	private RegionService regionService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Region> list() {
@@ -46,4 +51,9 @@ public class RegionController {
 			repository.delete(region);
 		}	 
 	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/withcount")
+	public List<Region> countPerRegion() {
+		return regionService.findAllWithSum();
+	} 
 }

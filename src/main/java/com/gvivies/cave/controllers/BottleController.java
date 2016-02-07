@@ -1,6 +1,9 @@
 package com.gvivies.cave.controllers;
 
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gvivies.cave.model.Bottle;
+import com.gvivies.cave.model.Region;
 import com.gvivies.cave.repositories.BottleRepository;
+import com.gvivies.cave.services.BottleService;
+import com.gvivies.cave.services.RegionService;
 
 @RestController
 @RequestMapping("/bottles")
@@ -20,6 +26,12 @@ public class BottleController {
 
 	@Autowired
 	private BottleRepository repository;
+	
+	@Autowired
+	private BottleService bottleService;
+	
+	@Autowired
+	private RegionService regionService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Bottle> list() {
@@ -53,4 +65,11 @@ public class BottleController {
 		repository.save(bottle);				
 		return bottle;
 	} 
+	
+	@RequestMapping(method=RequestMethod.GET, value="/countall")
+	public long countAll() {
+		return bottleService.countAll();
+
+	} 
+
 }

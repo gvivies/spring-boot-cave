@@ -33,9 +33,7 @@
         }
 
         function deleteItemHandler(item) {
-
             function removeItem() {
-
                 function onRemoveError() {
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la suppression de " + item.name);
                 }
@@ -46,11 +44,9 @@
                     itemList.splice(idx, 1);
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La suppression de " + item.name + " a été effectuée avec succès");
                 }
-
                 CrudService.resource(Constants.REGIONS_URI + '/' + item.id)
                     .remove(onRemoveSuccess, onRemoveError);
             }
-
             ConfirmService.confirmDelete(item, 'la région')
                 .then(removeItem);
         }
@@ -81,7 +77,7 @@
 
         // --- On load
 
-        viewModel.items = CrudService.resource(Constants.REGIONS_URI).list();
+        viewModel.items = CrudService.resource(Constants.REGIONS_URI + "/withcount").list();
         viewModel.formSettings = {
             size: "medium",
             template: "region.html",

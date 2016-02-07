@@ -42,14 +42,18 @@
                     } else if (idx === 5) {
                         menuTitle = 'Les types';
                         nextUri = 'classifications';
+                    } else if (idx === 6) {
+                        menuTitle = 'Les statistiques';
+                        nextUri = 'stats';
                     }
+
                     $location.path(nextUri);
                     MenuService.setActive(idx, menuTitle);
                 }
 
                 var menuVM = this;
 
-                menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Types'];
+                menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Types', 'Statistiques'];
                 menuVM.openMenu = openMenu;
                 menuVM.selectMenu = selectMenu;
 

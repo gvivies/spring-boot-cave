@@ -44,6 +44,11 @@
                 templateUrl: 'templates/bottles.html',
                 controller: 'BottlesCtrl',
                 controllerAs: 'ctrl'
+            })
+            .when('/stats', {
+                templateUrl: 'templates/statistics.html',
+                controller: 'StatsCtrl',
+                controllerAs: 'ctrl'
             }).otherwise({
                 redirectTo: '/bottles'
             });
@@ -52,12 +57,11 @@
             .primaryPalette('indigo').accentPalette('grey');
         $locationProvider.html5Mode(false);
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-
-
     }
 
     angular.module('cave', ['ngRoute',
                             'ngMaterial',
+                            'chart.js',
                             'menu.directive',
                             'message.directive',
                             'menu.service',
@@ -71,7 +75,8 @@
                             'bottles.controller',
                             'wines.controller',
                             'classifications.controller',
-                            'wineries.controller'])
+                            'wineries.controller',
+                            'stats.controller'])
         .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', defineRouting])
         .run(function ($rootScope, Constants) {
             $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);

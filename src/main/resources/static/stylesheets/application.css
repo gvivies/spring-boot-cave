@@ -39,11 +39,6 @@ md-content {
     background-color: #ffffff;
 }
 
-.card {
-    min-width: 96%;
-    padding: 0px;
-}
-
 .card-media {
     background-color: #c2c2c2;
     border-radius: 26px;
@@ -122,22 +117,12 @@ body {
     z-index: 90;
 }
 
-.app-main-content {
-    padding-top: 64px;
-}
-
 .app-view {
     background-color: #d6d6d6;
+    margin-top: 64px;
     padding-left: 0px;
     padding-right: 0px;
     width: 100%;
-}
-
-.app-view-title {
-    font-weight: bold;
-    margin-bottom: 8px;
-    margin-top: 4px;
-    margin-left: 12px;
 }
 
 .app-title-button-container {
@@ -174,10 +159,6 @@ body {
     background-color: #c5cae9;
     cursor: pointer;
     opacity: 0.8;
-}
-
-.app-view-title {
-    padding-top: 12px;
 }
 
 .app-frame:hover,
@@ -320,16 +301,6 @@ body {
     position: relative;
 }
 
-.app-dialog-small,
-.app-dialog-medium,
-.app-dialog-large,
-.app-dialog-xxl {
-    height: auto;
-    max-width: 100%;
-    min-height: 100%;
-    width: 100%;
-}
-
 
 /* icons */
 
@@ -391,9 +362,45 @@ body {
 }
 
 
-/* ----------- Non-Retina Screens ----------- */
+/* smartphones, iPhone, portrait 480x320 phones
+ - portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. 
+ - portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones  
+ - tablet, landscape iPad, lo-res laptops ands desktops */
 
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+@media (min-width:320px),
+@media (min-width:481px),
+@media (min-width:641px),
+@media (min-width:961px) {
+    .app-main-content {
+        padding-top: 64px;
+    }
+    .card {
+        min-width: 96%;
+        padding: 0px;
+    }
+    .app-view-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+        margin-top: 4px;
+        margin-left: 12px;
+        padding-top: 12px;
+    }
+    .app-dialog-small,
+    .app-dialog-medium,
+    .app-dialog-large,
+    .app-dialog-xxl {
+        height: auto;
+        max-width: 100%;
+        min-height: 100%;
+        width: 100%;
+    }
+}
+
+
+/* hi-res laptops and desktops */
+
+@media (min-width:1025px),
+@media (min-width:1281px) {
     .app-main-content {
         padding-top: 0px;
     }
@@ -402,8 +409,21 @@ body {
         width: 296px;
     }
     .app-view-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+        margin-top: 4px;
         margin-left: 12px;
+        padding-top: 12px;
         width: 92%;
+    }
+    .app-dialog-small,
+    .app-dialog-medium,
+    .app-dialog-large,
+    .app-dialog-xxl {
+        height: auto;
+        max-width: 100%;
+        min-height: 100%;
+        width: 100%;
     }
     .app-dialog-small {
         min-width: 340px;
@@ -424,38 +444,13 @@ body {
         width: 100%;
     }
 }
+
+
+/* ----------- Non-Retina Screens ----------- */
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {}
 
 
 /* ----------- Retina Screens ----------- */
 
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    .app-main-content {
-        padding-top: 0px;
-    }
-    .card {
-        min-width: 296px;
-        width: 296px;
-    }
-    .app-view-title {
-        margin-left: 12px;
-        width: 92%;
-    }
-    .app-dialog-small {
-        min-width: 340px;
-    }
-    .app-dialog-medium {
-        min-width: 480px;
-    }
-    .app-dialog-large {
-        min-height: 80%;
-        min-width: 640px;
-        width: 80%;
-    }
-    .app-dialog-xxl {
-        height: auto;
-        max-height: : 100%;
-        max-width: 100%;
-        min-height: 100%;
-        width: 100%;
-    }
-}
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {}

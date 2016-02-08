@@ -54,7 +54,7 @@
             });
 
         $mdThemingProvider.theme('default')
-            .primaryPalette('indigo').accentPalette('grey');
+            .primaryPalette('indigo').accentPalette('deep-purple');
         $locationProvider.html5Mode(false);
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     }

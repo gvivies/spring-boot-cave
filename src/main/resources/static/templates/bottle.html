@@ -21,7 +21,7 @@
                     <label>Appellation</label>
                     <md-autocomplete md-selected-item="form.item.wine" md-search-text="form.searchText" md-items="selectWine in form.querySearch(form.searchText, 'wines')" md-item-text="selectWine.name" md-min-length="0" placeholder="Selectionner une appellation" md-menu-class="autocomplete-custom-template">
                         <md-item-template>
-                            <span class="item-title white"><span>{{selectWine.name}}</span></span>
+                            <span class="item-title"><span>{{selectWine.name}}</span></span>
                         </md-item-template>
                     </md-autocomplete>
                 </md-input-container>

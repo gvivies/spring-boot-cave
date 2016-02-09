@@ -1,12 +1,14 @@
 <div class="bs-component" ng-show="menuCtrl.displayMenu">
     <md-toolbar class="md-whiteframe-6dp app-menu-bar" layout="row" layout-align="left center">
         <div layout="row" ng-show="menuCtrl.displayMenu">
-            <md-button aria-label="Open interactions menu" class="md-icon-button" ng-click="menuCtrl.toggle()">
-                <md-icon md-menu-origin>
-                    <div class="app-menu-picto"></div>
-                </md-icon>
-            </md-button>
-            <div class="md-toolbar-tools">{{selectedMenuTitle}}</div>
+            <div class="app-menu-button">
+                <md-button aria-label="Ouvrir menu" class="md-icon-button" ng-click="menuCtrl.toggle()">
+                    <md-icon md-menu-origin>
+                        <div class="app-menu-picto"></div>
+                    </md-icon>
+                </md-button>
+            </div>
+            <div class="md-toolbar-tools app-menu-title">{{selectedMenuTitle}}</div>
             <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="false">
                 <!-- <md-menu md-offset="0 -5">
                 <md-button aria-label="Open interactions menu" class="md-icon-button" ng-click="menuCtrl.openMenu($mdOpenMenu, $event)"> -->

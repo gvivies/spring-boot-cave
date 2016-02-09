@@ -18,10 +18,12 @@
     box-shadow: 10px 10px #666666;
 }
 
+
+/*
 .md-toolbar-tools {
-    /* height: 64px; */
     max-height: 52px;
 }
+*/
 
 md-card md-card-content {
     overflow: hidden;
@@ -130,6 +132,15 @@ body {
     position: fixed;
     height: 70px;
     z-index: 90;
+}
+
+.app-menu-button {
+    margin: 10px 6px;
+}
+
+.app-menu-title {
+    margin-top: 8px;
+    max-height: 52px;
 }
 
 .app-view {

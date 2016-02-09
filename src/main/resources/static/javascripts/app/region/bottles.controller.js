@@ -87,7 +87,6 @@
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
-        viewModel.createItem = createItemHandler;
         viewModel.deleteItem = deleteItemHandler;
         viewModel.drink = drinkHandler;
 
@@ -95,6 +94,7 @@
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
         $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
         $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
+        $scope.$on(Constants.ADD_CLICK_EVENT, createItemHandler);
 
         // --- On load
 
@@ -133,8 +133,9 @@
             uri: Constants.BOTTLES_URI,
             lists: formLists
         };
+        $rootScope.addItemElement = true;
+        $scope.$emit(Constants.SHOW_MENU_EVENT);
 
-        $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);
 
     }
 

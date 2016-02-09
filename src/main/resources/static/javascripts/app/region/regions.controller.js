@@ -9,9 +9,9 @@
     angular.module('regions.controller', [])
         .controller('RegionsCtrl', RegionsCtrl);
 
-    RegionsCtrl.$inject = ['CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService'];
+    RegionsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService'];
 
-    function RegionsCtrl(CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService) {
+    function RegionsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService) {
 
         var viewModel = this;
 
@@ -66,7 +66,6 @@
 
         // --- Attaching functions and events handler
 
-        viewModel.createItem = createItemHandler;
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
 
@@ -74,16 +73,19 @@
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
         $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
         $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
+        $scope.$on(Constants.ADD_CLICK_EVENT, createItemHandler);
 
         // --- On load
 
         viewModel.items = CrudService.resource(Constants.REGIONS_URI + "/withcount").list();
         viewModel.formSettings = {
-            size: "medium",
+            size: "xxl",
             template: "region.html",
             uri: Constants.REGIONS_URI
         };
+        $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
+
     }
 
 }());

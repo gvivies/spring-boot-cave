@@ -9,9 +9,9 @@
     angular.module('classifications.controller', [])
         .controller('ClassificationsCtrl', ClassificationsCtrl);
 
-    ClassificationsCtrl.$inject = ['CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService'];
+    ClassificationsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService'];
 
-    function ClassificationsCtrl(CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService) {
+    function ClassificationsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService) {
 
         var viewModel = this;
 
@@ -70,7 +70,6 @@
 
         // --- Attaching functions and events handler
 
-        viewModel.createItem = createItemHandler;
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
 
@@ -78,15 +77,17 @@
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
         $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
         $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
+        $scope.$on(Constants.ADD_CLICK_EVENT, createItemHandler);
 
         // --- On load
 
         viewModel.items = CrudService.resource(Constants.CLASSIFICATIONS_URI).list();
         viewModel.formSettings = {
-            size: "large",
+            size: "xxl",
             template: "classification.html",
             uri: Constants.CLASSIFICATIONS_URI
         };
+        $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
 
     }

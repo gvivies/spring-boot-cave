@@ -1,18 +1,11 @@
 <md-content class="app-main-content" layout-padding layout-wrap layout-fill>
-    <div class="app-title-button-container" ng-show="ctrl.displayMenu">
-        <div class="app-title-button">
-            <md-button class="md-fab" aria-label="Ajouter des types" ng-click="ctrl.createItem()">
-                <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
-            </md-button>
-        </div>
-    </div>
     <div flex="auto" layout="row" layout-wrap>
         <md-card class="card" ng-repeat="item in ctrl.items | orderBy:'name'">
             <md-card-title class="app-card-title">
                 <md-card-title-text>
                     <span class="md-headline">{{item.name}}</span>
                     <br />
-                    <span class="md-subhead">Classification</span>
+                    <span class="md-subhead white"></span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-title-media>
@@ -20,8 +13,6 @@
                     <div class="app-region-picto"></div>
                 </div>
             </md-card-title-media>
-            <md-card-content class="app-card-content-small">
-            </md-card-content>
             <md-card-actions layout="row" layout-align="space-around start">
                 <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>

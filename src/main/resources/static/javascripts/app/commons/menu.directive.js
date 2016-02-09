@@ -25,7 +25,7 @@
                 }
 
                 function selectMenu(idx) {
-                    var menuTitle = 'Bienvenue sur ma cave personnelle',
+                    var menuTitle,
                         nextUri;
                     if (idx === 1) {
                         menuTitle = 'Les bouteilles';
@@ -51,11 +51,18 @@
                     MenuService.setActive(idx, menuTitle);
                 }
 
+                function onAddButtonClick() {
+                    $scope.$broadcast(Constants.ADD_CLICK_EVENT);
+                }
+
                 var menuVM = this;
 
                 menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Types', 'Statistiques'];
                 menuVM.openMenu = openMenu;
                 menuVM.selectMenu = selectMenu;
+                menuVM.add = onAddButtonClick;
+
+                MenuService.setActive(1, 'Les bouteilles');
 
                 $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
                 $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);

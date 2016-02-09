@@ -7,11 +7,12 @@
     angular.module('wineries.controller', [])
         .controller('WineriesCtrl', WineriesCtrl);
 
-    WineriesCtrl.$inject = ['$scope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
+    WineriesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
 
-    function WineriesCtrl($scope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
+    function WineriesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
 
-        var viewModel = this;
+        var viewModel = this,
+            formLists = [];
 
         // --- Handler functions 
         function onShowMenuEventHandler() {
@@ -44,9 +45,7 @@
         }
 
         function deleteItemHandler(item) {
-
             function removeItem() {
-
                 function onRemoveError() {
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la suppression de " + item.name);
                 }
@@ -57,34 +56,43 @@
                     itemList.splice(idx, 1);
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La suppression de " + item.name + " a été effectuée avec succès");
                 }
-
                 CrudService.resource(Constants.WINERIES_URI + '/' + item.id)
                     .remove(onRemoveSuccess, onRemoveError);
             }
-
             ConfirmService.confirmDelete(item, 'le domaine')
                 .then(removeItem);
+        }
+
+        function initForm(listRegions) {
+            formLists.push({
+                'name': 'regions',
+                'content': listRegions
+            });
+
+            viewModel.formSettings = {
+                size: "xxl",
+                template: "winery.html",
+                uri: Constants.WINERIES_URI,
+                lists: formLists
+            };
         }
 
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
-        viewModel.createItem = createItemHandler;
         viewModel.deleteItem = deleteItemHandler;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
         $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
         $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
-
+        $scope.$on(Constants.ADD_CLICK_EVENT, createItemHandler);
         // --- On load
 
         viewModel.items = CrudService.resource(Constants.WINERIES_URI).list();
-        viewModel.formSettings = {
-            size: "xxl",
-            template: "winery.html",
-            uri: Constants.WINERIES_URI
-        };
+        viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list(initForm);
+
+        $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
 
     }

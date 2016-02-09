@@ -1,18 +1,11 @@
 <md-content class="app-main-content" layout-padding layout-wrap layout-fill>
-    <div class="app-title-button-container" ng-show="ctrl.displayMenu">
-        <div class="app-title-button">
-            <md-button class="md-fab" aria-label="Ajouter des bouteilles" ng-click="ctrl.createItem()">
-                <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
-            </md-button>
-        </div>
-    </div>
     <div flex="auto" layout="row" layout-xs="column" layout-wrap>
         <md-card class="card" ng-repeat="item in ctrl.items | orderBy:'name'">
             <md-card-title class="app-card-title">
                 <md-card-title-text>
                     <span class="md-headline">{{item.name}}</span>
                     <br />
-                    <span class="md-subhead">{{item.wine.name}}</span>
+                    <span class="md-subhead white">{{item.wine.name}}</span>
                 </md-card-title-text>
                 <span flex></span>
             </md-card-title>

@@ -18,9 +18,19 @@
             </div>
             <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
+                    <label>Région</label>
+                    <md-select ng-model="form.item.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région" required>
+                        <md-option ng-value="reg" ng-repeat="reg in form.lists['regions']">{{ reg.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
+                <md-input-container flex>
                     <label>Adresse</label>
                     <input ng-model="form.item.street">
                 </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Code postal</label>
                     <input ng-model="form.item.zipCode">
@@ -31,6 +41,8 @@
                     <label>Ville</label>
                     <input ng-model="form.item.city">
                 </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Téléphone</label>
                     <input ng-model="form.item.telephone">
@@ -41,6 +53,8 @@
                     <label>Email</label>
                     <input ng-model="form.item.email">
                 </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
                     <label>Site web</label>
                     <input ng-model="form.item.webSite">

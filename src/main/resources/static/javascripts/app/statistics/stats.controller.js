@@ -17,6 +17,7 @@
         // on Load
         viewModel.labels = [];
         viewModel.data = [];
+
         CrudService.resource(Constants.REGIONS_URI + "/withcount").list(function onSuccess(response) {
             var idx, item;
             for (idx = 0; idx < response.length; idx++) {
@@ -27,6 +28,8 @@
         });
 
 
+        $rootScope.addItemElement = false;
+        $scope.$broadcast(Constants.SHOW_MENU_EVENT);
 
     }
 

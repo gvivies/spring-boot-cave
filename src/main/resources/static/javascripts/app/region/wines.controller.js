@@ -7,9 +7,9 @@
     angular.module('wines.controller', [])
         .controller('WinesCtrl', WinesCtrl);
 
-    WinesCtrl.$inject = ['$scope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
+    WinesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
 
-    function WinesCtrl($scope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
+    function WinesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
 
         var viewModel = this,
             listRegions = [],
@@ -79,7 +79,7 @@
             });
 
             viewModel.formSettings = {
-                size: "large",
+                size: "xxl",
                 template: "wine.html",
                 uri: Constants.WINES_URI,
                 lists: formLists
@@ -89,7 +89,6 @@
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
-        viewModel.createItem = createItemHandler;
         viewModel.deleteItem = deleteItemHandler;
         viewModel.filterWines = filterWinesHandler;
 
@@ -97,12 +96,14 @@
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
         $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
         $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
+        $scope.$on(Constants.ADD_CLICK_EVENT, createItemHandler);
 
         // --- On load
 
         viewModel.items = CrudService.resource(Constants.WINES_URI).list();
         viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list(initWineForm);
         viewModel.region = {};
+        $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
     }
 

@@ -32,6 +32,7 @@ md-content {
 }
 
 .md-subhead {
+    font-weight: bold;
     padding-left: 16px;
 }
 
@@ -52,13 +53,23 @@ md-content {
 
 /* =============== Overriding Angular Chart ================ */
 
+.chart-container {
+    width: 100%;
+}
+
+.chart-legend {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
 .pie-legend li {
     display: block;
     white-space: nowrap;
     position: relative;
     margin-bottom: 4px;
     border-radius: 5px;
-    padding: 18px 8px 2px 28px;
+    padding: 6px 8px 2px 28px;
     cursor: default;
 }
 
@@ -66,32 +77,15 @@ element.style {
     background-color: rgba(247, 70, 74, 1);
 }
 
-(index)media="screen, projection" .chart-legend li span,
-.bar-legend li span,
-.line-legend li span,
-.pie-legend li span,
-.radar-legend li span,
-.polararea-legend li span,
-.doughnut-legend li span {
-    display: block;
-    position: absolute;
-    /* left: 0; */
-    /* top: 0; */
-    width: 0px;
-    height: 20px;
-    border-radius: 5px;
-    padding-left: 44px;
-}
-
 .pie-legend li span {
-    display: block;
-    position: absolute;
-    /* left: 0; */
-    /* top: 0; */
-    width: 0px;
-    height: 20px;
-    border-radius: 5px;
-    padding-left: 44px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    font-size: 16px;
+    width: 180px;
+    border-radius: 2px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 
@@ -113,6 +107,7 @@ body {
 }
 
 .app-menu-bar {
+    display: block;
     position: fixed;
     z-index: 90;
 }
@@ -127,18 +122,11 @@ body {
 
 .app-title-button-container {
     float: right;
-    position: fixed;
-    top: 100%;
-    width: 100%;
+    padding-right: 12px;
     z-index: 91;
 }
 
 .app-title-button {
-    position: absolute;
-    margin-right: 12px;
-    margin-top: -66px;
-    top: 0;
-    right: 0;
     z-index: 100;
 }
 
@@ -354,10 +342,30 @@ body {
     width: 340px;
 }
 
+.white {
+    color: #ffffff;
+}
+
+
+/* Retina Screens */
+
 @media screen {
     .layout-fill {
         padding-left: 0px;
         padding-right: 0px;
+    }
+    .card {
+        min-width: 296px;
+        width: 296px;
+    }
+    .app-dialog-small,
+    .app-dialog-medium,
+    .app-dialog-large,
+    .app-dialog-xxl {
+        height: auto;
+        max-width: 100%;
+        min-height: 100%;
+        width: 100%;
     }
 }
 
@@ -444,13 +452,3 @@ body {
         width: 100%;
     }
 }
-
-
-/* ----------- Non-Retina Screens ----------- */
-
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {}
-
-
-/* ----------- Retina Screens ----------- */
-
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {}

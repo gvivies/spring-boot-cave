@@ -1,11 +1,4 @@
 <md-content class="app-main-content" layout-padding layout-wrap layout-fill>
-    <div class="app-title-button-container" ng-show="ctrl.displayMenu">
-        <div class="app-title-button">
-            <md-button class="md-fab" aria-label="Ajouter des appellations" ng-click="ctrl.createItem()">
-                <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
-            </md-button>
-        </div>
-    </div>
     <md-input-container flex>
         <label>Région</label>
         <md-select ng-model="ctrl.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région" required>
@@ -18,7 +11,7 @@
                 <md-card-title-text>
                     <span class="md-headline">{{item.name}}</span>
                     <br />
-                    <span class="md-subhead">Vin</span>
+                    <span class="md-subhead white">{{item.region.name}}</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-title-media>
@@ -26,12 +19,6 @@
                     <div class="app-wine-picto"></div>
                 </div>
             </md-card-title-media>
-            <md-card-content class="app-card-content-small">
-                <div layout="row">
-                    <div class="fieldlabel">Région</div>
-                    <div class="fieldvalue">{{item.region.name}}</div>
-                </div>
-            </md-card-content>
             <md-card-actions layout="row" layout-align="space-around start">
                 <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>

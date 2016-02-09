@@ -41,6 +41,13 @@
                 </md-menu-content>
             </md-menu>
             <div class="md-toolbar-tools">{{selectedMenuTitle}}</div>
+            <div class="app-title-button-container">
+                <div class="app-title-button" ng-show="addItemElement">
+                    <md-button class="md-fab" aria-label="Ajouter un élément" ng-click="menuCtrl.add()">
+                        <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
+                    </md-button>
+                </div>
+            </div>
         </div>
     </md-toolbar>
 </div>

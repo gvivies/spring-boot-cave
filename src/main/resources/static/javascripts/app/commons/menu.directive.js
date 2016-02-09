@@ -10,7 +10,7 @@
             replace: true,
             templateUrl: 'templates/menu.html',
             controllerAs: 'menuCtrl',
-            controller: function ($scope, $rootScope, $attrs, $location, MenuService, Constants) {
+            controller: function ($scope, $rootScope, $attrs, $location, MenuService, Constants, $timeout, $mdSidenav, $log) {
 
                 function onShowMenuEventHandler() {
                     menuVM.displayMenu = true;
@@ -49,11 +49,46 @@
 
                     $location.path(nextUri);
                     MenuService.setActive(idx, menuTitle);
+                    close();
                 }
 
                 function onAddButtonClick() {
                     $scope.$broadcast(Constants.ADD_CLICK_EVENT);
                 }
+
+                /* Menu management */
+
+                function debounce(func, wait, context) {
+                    var timer;
+                    return function debounced() {
+                        var context = $scope,
+                            args = Array.prototype.slice.call(arguments);
+                        $timeout.cancel(timer);
+                        timer = $timeout(function () {
+                            timer = undefined;
+                            func.apply(context, args);
+                        }, wait || 10);
+                    };
+                }
+
+                function close() {
+                    $mdSidenav('left').close()
+                        .then(function () {
+                            //$log.debug("Close is done");
+                        });
+                };
+
+                function buildDelayedToggler() {
+                    //return debounce(function () {
+                    $mdSidenav('left')
+                        .toggle()
+                        .then(function () {
+                            //$log.debug("Toggle menu is done");
+                        });
+                    //}, 200);
+                }
+
+                /* on Load */
 
                 var menuVM = this;
 
@@ -61,6 +96,8 @@
                 menuVM.openMenu = openMenu;
                 menuVM.selectMenu = selectMenu;
                 menuVM.add = onAddButtonClick;
+                menuVM.close = close;
+                menuVM.toggle = buildDelayedToggler;
 
                 MenuService.setActive(1, 'Les bouteilles');
 

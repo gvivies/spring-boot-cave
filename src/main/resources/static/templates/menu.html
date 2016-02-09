@@ -1,12 +1,15 @@
 <div class="bs-component" ng-show="menuCtrl.displayMenu">
     <md-toolbar class="md-whiteframe-6dp app-menu-bar" layout="row" layout-align="left center">
         <div layout="row" ng-show="menuCtrl.displayMenu">
-            <md-menu md-offset="0 -5">
-                <md-button aria-label="Open interactions menu" class="md-icon-button" ng-click="menuCtrl.openMenu($mdOpenMenu, $event)">
-                    <md-icon md-menu-origin>
-                        <div class="app-menu-picto"></div>
-                    </md-icon>
-                </md-button>
+            <md-button aria-label="Open interactions menu" class="md-icon-button" ng-click="menuCtrl.toggle()">
+                <md-icon md-menu-origin>
+                    <div class="app-menu-picto"></div>
+                </md-icon>
+            </md-button>
+            <div class="md-toolbar-tools">{{selectedMenuTitle}}</div>
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="false">
+                <!-- <md-menu md-offset="0 -5">
+                <md-button aria-label="Open interactions menu" class="md-icon-button" ng-click="menuCtrl.openMenu($mdOpenMenu, $event)"> -->
                 <md-menu-content width="40">
                     <md-menu-item>
                         <md-button ng-click="menuCtrl.selectMenu(1)">
@@ -38,9 +41,14 @@
                             {{menuCtrl.menuLabel[5]}}
                         </md-button>
                     </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="menuCtrl.close()">
+                            X
+                        </md-button>
+                    </md-menu-item>
                 </md-menu-content>
-            </md-menu>
-            <div class="md-toolbar-tools">{{selectedMenuTitle}}</div>
+            </md-sidenav>
+            <!-- </md-menu> -->
             <div class="app-title-button-container">
                 <div class="app-title-button" ng-show="addItemElement">
                     <md-button class="md-fab" aria-label="Ajouter un élément" ng-click="menuCtrl.add()">

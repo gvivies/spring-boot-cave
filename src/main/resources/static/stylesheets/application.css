@@ -272,6 +272,14 @@ body {
     width: 24px;
 }
 
+.app-add-picto {
+    background-image: url("/cave/images/add.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+}
+
 
 /* Cards */
 

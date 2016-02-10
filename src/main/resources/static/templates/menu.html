@@ -52,10 +52,16 @@
             </md-sidenav>
             <!-- </md-menu> -->
             <div class="app-title-button-container">
-                <div class="app-title-button" ng-show="addItemElement">
+                <div class="app-title-button app-menu-button" ng-show="addItemElement">
+                    <md-button aria-label="Ajouter un élément" class="md-icon-button" ng-click="menuCtrl.add()">
+                        <md-icon md-menu-origin>
+                            <div class="app-add-picto"></div>
+                        </md-icon>
+                    </md-button>
+                    <!--
                     <md-button class="md-fab" aria-label="Ajouter un élément" ng-click="menuCtrl.add()">
                         <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
-                    </md-button>
+                    </md-button> -->
                 </div>
             </div>
         </div>

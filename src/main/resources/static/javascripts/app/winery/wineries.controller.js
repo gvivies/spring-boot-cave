@@ -7,9 +7,9 @@
     angular.module('wineries.controller', [])
         .controller('WineriesCtrl', WineriesCtrl);
 
-    WineriesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
+    WineriesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', 'GeoCodeService'];
 
-    function WineriesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
+    function WineriesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService, GeoCodeService) {
 
         var viewModel = this,
             formLists = [];
@@ -63,6 +63,27 @@
                 .then(removeItem);
         }
 
+        // --- Location Map 
+        function showLocationHandler(item) {
+            $scope.$emit(Constants.SHOW_LOCATION_EVENT, item);
+        }
+
+        // --- Google geocoding API
+        function geoCodeThis(item) {
+            if (UtilService.isBlank(item.city)) {
+                return;
+            }
+            //if (UtilService.isBlank(item.longitude) || UtilService.isBlank(item.latitude)) {
+            var geoData = GeoCodeService.geoCodeAddress(item.street, item.zipCode, item.city,
+                function (results, status) {
+                    if (status !== undefined && status === 'OK' && results.length > 0 && !UtilService.isBlank(results[0].geometry)) {
+                        item.latitude = results[0].geometry.location.lat();
+                        item.longitude = results[0].geometry.location.lng();
+                    }
+                });
+            //}
+        }
+
         function initForm(listRegions) {
             formLists.push({
                 'name': 'regions',
@@ -73,7 +94,8 @@
                 size: "xxl",
                 template: "winery.html",
                 uri: Constants.WINERIES_URI,
-                lists: formLists
+                lists: formLists,
+                beforeSave: geoCodeThis
             };
         }
 
@@ -81,12 +103,14 @@
 
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
+        viewModel.showLocation = showLocationHandler;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
         $scope.$on(Constants.SHOW_MENU_EVENT, onShowMenuEventHandler);
         $scope.$on(Constants.HIDE_MENU_EVENT, onHideMenuEventHandler);
         $scope.$on(Constants.ADD_CLICK_EVENT, createItemHandler);
+
         // --- On load
 
         viewModel.items = CrudService.resource(Constants.WINERIES_URI).list();

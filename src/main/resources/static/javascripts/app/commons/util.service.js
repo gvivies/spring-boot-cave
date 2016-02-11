@@ -27,8 +27,13 @@
             return -1;
         }
 
+        function isBlank(value) {
+            return (value === null || value === undefined || value === '');
+        }
+
         this.clone = fnClone;
         this.getIndex = getIndex;
+        this.isBlank = isBlank;
     }
 
 

@@ -20,4 +20,6 @@
 
     angular.module('spinner.service', ['ngRoute']);
 
+    angular.module('geocode.service', []);
+
 })();

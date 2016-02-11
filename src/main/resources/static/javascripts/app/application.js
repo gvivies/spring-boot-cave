@@ -76,7 +76,9 @@
                             'wines.controller',
                             'classifications.controller',
                             'wineries.controller',
-                            'stats.controller'])
+                            'stats.controller',
+                            'geocode.service',
+                            'location.directive'])
         .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', defineRouting])
         .run(function ($rootScope, Constants) {
             $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);

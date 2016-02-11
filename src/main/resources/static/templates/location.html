@@ -1,0 +1,20 @@
+<div class="app-map" ng-show="form.isVisibleMap">
+    <md-toolbar class="md-whiteframe-6dp app-menu-bar" layout="row" layout-align="left center">
+        <div layout="row">
+            <div class="md-toolbar-tools app-menu-title">{{form.title}}</div>
+            <div class="app-title-button-container">
+                <div class="app-title-button app-menu-button">
+                    <md-button aria-label="Fermer la localisation" class="md-icon-button" ng-click="form.close()">
+                        <md-icon md-menu-origin>
+                            <div>X</div>
+                        </md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+    <ui-gmap-google-map center='form.map.center' zoom='form.map.zoom'>
+        <ui-gmap-marker coords="form.marker.coords" options="form.marker.options" events="form.marker.events" idkey="form.marker.id">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>

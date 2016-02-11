@@ -18,7 +18,11 @@
         "DISPLAY_MSG_EVENT": "DISPLAY_MSG_EVENT",
         "HIDE_MENU_EVENT": "HIDE_MENU_EVENT",
         "SHOW_MENU_EVENT": "SHOW_MENU_EVENT",
-        "ADD_CLICK_EVENT": "ADD_CLICK_EVENT"
+        "ADD_CLICK_EVENT": "ADD_CLICK_EVENT",
+        "GEOCODING_API_URL": "http://maps.google.com/maps/api/geocode/json?sensor=false&language=fr",
+        "GEOCODING_API_KEY": "AIzaSyDvPXa7RlrYiwVYj5w_CKt8YMTdGCcXfMk",
+        "SHOW_LOCATION_EVENT": "SHOW_LOCATION_EVENT",
+        "HIDE_LOCATION_EVENT": "HIDE_LOCATION_EVENT"
     });
 
 }());

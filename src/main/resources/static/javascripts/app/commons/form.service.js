@@ -19,7 +19,8 @@
                     size: settings.size,
                     scope: $scope,
                     uri: settings.uri,
-                    lists: settings.lists
+                    lists: settings.lists,
+                    beforeSave: settings.beforeSave
                 },
                 controllerAs: 'form',
                 controller: 'DialogCtrl'
@@ -42,6 +43,7 @@
         formVM.size = locals.size;
         formVM.uri = locals.uri;
         formVM.lists = [];
+        formVM.beforeSave = locals.beforeSave;
 
         // Initializing all lists for select objects 
         if (locals.lists !== undefined) {
@@ -106,6 +108,9 @@
         }
 
         function saveHandler() {
+            if (formVM.beforeSave !== undefined) {
+                formVM.beforeSave(formVM.item);
+            }
             if (formVM.item.id !== undefined) {
                 CrudService.resource(formVM.uri)
                     .update(formVM.item, onUpdateSuccess, onUpdateError);

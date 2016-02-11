@@ -7,9 +7,9 @@
     angular.module('wineries.controller', [])
         .controller('WineriesCtrl', WineriesCtrl);
 
-    WineriesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', 'GeoCodeService'];
+    WineriesCtrl.$inject = ['$scope', '$rootScope', '$q', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', 'GeoCodeService'];
 
-    function WineriesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService, GeoCodeService) {
+    function WineriesCtrl($scope, $rootScope, $q, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService, GeoCodeService) {
 
         var viewModel = this,
             formLists = [];
@@ -70,18 +70,21 @@
 
         // --- Google geocoding API
         function geoCodeThis(item) {
-            if (UtilService.isBlank(item.city)) {
-                return;
+            var defer = $q.defer();
+
+            if (!UtilService.isBlank(item.city)) {
+                GeoCodeService.geoCodeAddress(item.street, item.zipCode, item.city,
+                    function (results, status) {
+                        if (status !== undefined && status === 'OK' && results.length > 0 && !UtilService.isBlank(results[0].geometry)) {
+                            item.latitude = results[0].geometry.location.lat();
+                            item.longitude = results[0].geometry.location.lng();
+                            defer.resolve(item);
+                        };
+                    });
+
             }
-            //if (UtilService.isBlank(item.longitude) || UtilService.isBlank(item.latitude)) {
-            var geoData = GeoCodeService.geoCodeAddress(item.street, item.zipCode, item.city,
-                function (results, status) {
-                    if (status !== undefined && status === 'OK' && results.length > 0 && !UtilService.isBlank(results[0].geometry)) {
-                        item.latitude = results[0].geometry.location.lat();
-                        item.longitude = results[0].geometry.location.lng();
-                    }
-                });
-            //}
+
+            return defer.promise;
         }
 
         function initForm(listRegions) {

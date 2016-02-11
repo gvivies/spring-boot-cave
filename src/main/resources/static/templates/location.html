@@ -6,15 +6,17 @@
                 <div class="app-title-button app-menu-button">
                     <md-button aria-label="Fermer la localisation" class="md-icon-button" ng-click="form.close()">
                         <md-icon md-menu-origin>
-                            <div>X</div>
+                            <div class="app-close-picto"></div>
                         </md-icon>
                     </md-button>
                 </div>
             </div>
         </div>
     </md-toolbar>
-    <ui-gmap-google-map center='form.map.center' zoom='form.map.zoom'>
-        <ui-gmap-marker coords="form.marker.coords" options="form.marker.options" events="form.marker.events" idkey="form.marker.id">
-        </ui-gmap-marker>
-    </ui-gmap-google-map>
+    <div ng-if="form.isVisibleMap">
+        <ui-gmap-google-map center='form.map.center' zoom='form.map.zoom'>
+            <ui-gmap-marker coords="form.marker.coords" options="form.marker.options" events="form.marker.events" idkey="form.marker.id">
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
 </div>

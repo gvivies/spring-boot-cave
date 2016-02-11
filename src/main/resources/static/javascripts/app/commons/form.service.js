@@ -109,8 +109,17 @@
 
         function saveHandler() {
             if (formVM.beforeSave !== undefined) {
-                formVM.beforeSave(formVM.item);
+                formVM.beforeSave(formVM.item).then(function (data) {
+                    formVM.item = data;
+                    saveItem();
+                });
+            } else {
+                saveItem();
             }
+
+        }
+
+        function saveItem() {
             if (formVM.item.id !== undefined) {
                 CrudService.resource(formVM.uri)
                     .update(formVM.item, onUpdateSuccess, onUpdateError);

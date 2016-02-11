@@ -15,11 +15,6 @@
     .md-toolbar {
         box-shadow: 10px 10px #666666;
     }
-    /*
-.md-toolbar-tools {
-    max-height: 52px;
-}
-*/
     
     md-card md-card-content {
         overflow: hidden;
@@ -105,6 +100,7 @@
     /* =============== Angular Google Map style ================ */
     
     .angular-google-map-container {
+        width: auto;
         height: 640px;
     }
     /* =============== Application specific style ================ */
@@ -276,6 +272,14 @@
         height: 24px;
         width: 24px;
     }
+    
+    .app-close-picto {
+        background-image: url("/cave/images/close.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 24px;
+        width: 24px;
+    }
     /* Cards */
     
     .app-card-title {
@@ -334,6 +338,10 @@
         background-image: url("/cave/images/icons/drink.svg");
     }
     
+    .app-icon-pin {
+        background-image: url("/cave/images/icons/pin.svg");
+    }
+    
     .fieldlabel {
         min-width: 108px;
     }
@@ -381,7 +389,7 @@
         overflow-y: visible;
         position: fixed;
         top: 0px;
-        width: 100%;
+        width: inherit;
         z-index: 200;
     }
     /* Retina Screens */
@@ -403,6 +411,17 @@
             max-width: 100%;
             min-height: 100%;
             width: 100%;
+        }
+        .angular-google-map-container {
+            height: 640px;
+        }
+        .app-map {
+            left: 0;
+            overflow-y: visible;
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            z-index: 200;
         }
     }
     /* smartphones, iPhone, portrait 480x320 phones

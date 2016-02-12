@@ -13,10 +13,8 @@
             </div>
         </div>
     </md-toolbar>
-    <div ng-if="form.isVisibleMap">
-        <ui-gmap-google-map center='form.map.center' zoom='form.map.zoom'>
-            <ui-gmap-marker coords="form.marker.coords" options="form.marker.options" events="form.marker.events" idkey="form.marker.id">
-            </ui-gmap-marker>
-        </ui-gmap-google-map>
-    </div>
+    <ui-gmap-google-map ng-show="form.isVisibleMap" center="form.map.center" zoom="form.map.zoom" ng-cloak>
+        <ui-gmap-marker coords="form.marker.coords" options="form.marker.options" events="form.marker.events" idkey="form.marker.id">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
 </div>

@@ -12,31 +12,36 @@
                 formVM.isVisibleMap = false;
                 formVM.map = {};
                 $scope.$emit(Constants.SHOW_MENU_EVENT);
-
             }
 
             function showLocation(event, item) {
                 var lat = parseFloat(item.latitude),
                     lng = parseFloat(item.longitude),
-                    center = {
+                    mapCenter = {
                         latitude: lat,
                         longitude: lng
-                    };
-
+                    },
+                    markerCoords = Object.create(mapCenter);
+                formVM.formattedAddress = item.street + '<br/>' + item.zipCode + '<br/>' + item.city;
+                formVM.title = 'Localisation de ' + item.name;
                 formVM.map = {
-                    center: center,
-                    zoom: 12,
-                    refresh: true
+                    center: mapCenter,
+                    zoom: 12
                 };
                 formVM.marker = {
                     id: 0,
-                    coords: center,
+                    coords: markerCoords,
                     title: item.name
                 };
-
-                formVM.title = 'Localisation de ' + item.name;
+                formVM.marker.options = {
+                    draggable: false,
+                    labelContent: formVM.formattedAddress,
+                    labelAnchor: "100 0",
+                    labelClass: "marker-labels"
+                };
                 formVM.isVisibleMap = true;
                 $scope.$emit(Constants.HIDE_MENU_EVENT);
+                formVM.map.refresh = true;
 
                 google.maps.event.trigger(formVM.map, 'resize');
             }

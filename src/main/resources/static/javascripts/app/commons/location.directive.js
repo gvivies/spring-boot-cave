@@ -10,7 +10,6 @@
 
             function close() {
                 formVM.isVisibleMap = false;
-                //formVM.map = {};
                 $scope.$emit(Constants.SHOW_MENU_EVENT);
             }
 
@@ -43,9 +42,9 @@
                 $scope.$emit(Constants.HIDE_MENU_EVENT);
                 //formVM.map.refresh = true;
                 uiGmapIsReady.promise().then(function (maps) {
-                    //$timeout(function () {
-                    google.maps.event.trigger(formVM.map, 'resize');
-                    //}, 500);
+                    $timeout(function () {
+                        google.maps.event.trigger(formVM.map, 'resize');
+                    }, 2000);
 
                 });
             }

@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function locationDirective(Constants, $mdDialog, uiGmapIsReady) {
+    function locationDirective(Constants, $mdDialog, uiGmapIsReady, $timeout) {
 
         function LocationCtrl($scope) {
 
@@ -10,7 +10,7 @@
 
             function close() {
                 formVM.isVisibleMap = false;
-                formVM.map = {};
+                //formVM.map = {};
                 $scope.$emit(Constants.SHOW_MENU_EVENT);
             }
 
@@ -41,9 +41,12 @@
                 };
                 formVM.isVisibleMap = true;
                 $scope.$emit(Constants.HIDE_MENU_EVENT);
-                formVM.map.refresh = true;
-                IsReady.promise().then(function (maps) {
+                //formVM.map.refresh = true;
+                uiGmapIsReady.promise().then(function (maps) {
+                    //$timeout(function () {
                     google.maps.event.trigger(formVM.map, 'resize');
+                    //}, 500);
+
                 });
             }
 
@@ -65,5 +68,5 @@
     }
 
     angular.module('location.directive', ['uiGmapgoogle-maps'])
-        .directive('location', ['Constants', '$mdDialog', 'uiGmapIsReady', locationDirective]);
+        .directive('location', ['Constants', '$mdDialog', 'uiGmapIsReady', '$timeout', locationDirective]);
 }());

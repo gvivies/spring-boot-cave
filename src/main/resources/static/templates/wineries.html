@@ -44,7 +44,7 @@
                 </div>
             </md-card-content>
             <md-card-actions layout="row" layout-align="space-around start">
-                <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.showLocation(item)">
+                <md-button class="md-cornered" aria-label="Localisation" ng-show="ctrl.localizable(item)" ng-click="ctrl.showLocation(item)">
                     <md-icon md-svg-src="/cave/images/icons/pin.svg"></md-icon>
                 </md-button>
                 <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">

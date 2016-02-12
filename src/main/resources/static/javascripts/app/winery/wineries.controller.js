@@ -63,6 +63,10 @@
                 .then(removeItem);
         }
 
+        function localizableHandler(item) {
+            return !UtilService.isBlank(item.city);
+        }
+
         // --- Location Map 
         function showLocationHandler(item) {
             $scope.$emit(Constants.SHOW_LOCATION_EVENT, item);
@@ -107,6 +111,7 @@
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
         viewModel.showLocation = showLocationHandler;
+        viewModel.localizable = localizableHandler;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);

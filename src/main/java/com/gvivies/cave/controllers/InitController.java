@@ -142,7 +142,7 @@ public class InitController {
 	}
 
 	private void initDealer() {
-		repositoryDealer.insert(new Dealer(UNKNOWN, "", "", "", "", "", "", "", "", ""));
+		repositoryDealer.insert(new Dealer(UNKNOWN, "", "", "", "", "", "", "", "", "", null));
 	}
 
 	private void initAppellationsBordeaux(Region bordeaux) {

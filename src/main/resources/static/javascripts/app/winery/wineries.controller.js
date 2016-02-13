@@ -86,6 +86,8 @@
                         };
                     });
 
+            } else {
+                defer.resolve(item);
             }
 
             return defer.promise;

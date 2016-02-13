@@ -16,11 +16,12 @@ public class Dealer {
 	private String comment;
 	private String latitude;
 	private String longitude;
+	private Region region;
 	
 	public Dealer() {}
 
 	public Dealer(String name, String street, String zipCode, String city, String telephone, String email,
-			String webSite, String comment, String latitude, String longitude) {
+			String webSite, String comment, String latitude, String longitude, Region region) {
 		super();
 		this.name = name;
 		this.street = street;
@@ -32,6 +33,7 @@ public class Dealer {
 		this.comment = comment;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.region = region;
 	}
 	public final String getId() {
 		return _id;
@@ -99,6 +101,14 @@ public class Dealer {
 	public final void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+	public final Region getRegion() {
+		return region;
+	}
+
+	public final void setRegion(Region region) {
+		this.region = region;
+	}
+
 	@Override
 	public String toString() {
 		return "Dealer [name=" + name + ", street=" + street + ", zipCode=" + zipCode + ", city=" + city + "]";

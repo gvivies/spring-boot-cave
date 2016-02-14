@@ -20,7 +20,7 @@
                 <md-input-container flex>
                     <label>Région</label>
                     <md-select ng-model="form.item.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région" required>
-                        <md-option ng-value="reg" ng-repeat="reg in form.lists['regions']">{{ reg.name }}</md-option>
+                        <md-option ng-value="reg" ng-repeat="reg in form.lists['regions'] | orderBy:'name'">{{ reg.name }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>

@@ -31,7 +31,7 @@
                 <md-input-container flex>
                     <label>Type</label>
                     <md-select ng-model="form.item.classification" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un type" required>
-                        <md-option ng-value="classif" ng-repeat="classif in form.lists['classifications']">{{ classif.name }}</md-option>
+                        <md-option ng-value="classif" ng-repeat="classif in form.lists['classifications'] | orderBy:'name'">{{ classif.name }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -63,7 +63,7 @@
                 <md-input-container flex>
                     <label>Domaine</label>
                     <md-select ng-model="form.item.dealer" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un domaine" required>
-                        <md-option ng-value="winery" ng-repeat="winery in form.lists['wineries']">{{ winery.name }}</md-option>
+                        <md-option ng-value="winery" ng-repeat="winery in form.lists['wineries'] | orderBy:'name'">{{ winery.name }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>

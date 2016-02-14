@@ -85,7 +85,13 @@
         }
 
         function filterBottlesHandler(bottle) {
-            return (UtilService.isBlank(viewModel.region) || viewModel.region.name == bottle.wine.region.name);
+            if (!UtilService.isBlank(viewModel.region) && viewModel.region.name !== bottle.wine.region.name) {
+                return false;
+            }
+            if (!UtilService.isBlank(viewModel.classification) && viewModel.classification.name !== bottle.classification.name) {
+                return false;
+            }
+            return true;
         }
         // --- Attaching functions and events handler
 
@@ -115,7 +121,7 @@
                     'content': listWineries
                 });
             });
-            CrudService.resource(Constants.CLASSIFICATIONS_URI).list(function (listClassifications) {
+            viewModel.classifications = CrudService.resource(Constants.CLASSIFICATIONS_URI).list(function (listClassifications) {
                 formLists.push({
                     'name': 'classifications',
                     'content': listClassifications

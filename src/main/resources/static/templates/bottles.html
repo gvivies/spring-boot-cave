@@ -7,6 +7,13 @@
                 <md-option ng-value="reg" ng-repeat="reg in ctrl.regions | orderBy:'name'">{{ reg.name }}</md-option>
             </md-select>
         </md-input-container>
+        <md-input-container flex>
+            <label>Type</label>
+            <md-select ng-model="ctrl.classification" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un type">
+                <md-option value=""></md-option>
+                <md-option ng-value="classif" ng-repeat="classif in ctrl.classifications | orderBy:'name'">{{ classif.name }}</md-option>
+            </md-select>
+        </md-input-container>
     </div>
     <div flex="auto" layout="row" layout-xs="column" layout-wrap>
         <md-card class="card" ng-repeat="item in ctrl.items | filter:ctrl.filterBottles | orderBy:'name'">

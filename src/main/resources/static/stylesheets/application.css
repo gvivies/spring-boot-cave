@@ -64,7 +64,9 @@
     /* =============== Overriding Angular Chart ================ */
     
     .chart-container {
-        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
     }
     
     .chart-legend {
@@ -405,6 +407,12 @@
         top: 0px;
         width: inherit;
         z-index: 200;
+    }
+    
+    .app-statistics-content {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
     }
     /* Retina Screens */
     

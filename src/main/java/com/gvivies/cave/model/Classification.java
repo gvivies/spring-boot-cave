@@ -1,12 +1,15 @@
 package com.gvivies.cave.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 public class Classification {
 	
 	@Id
 	private String _id;
 	private String name;
+    @Transient
+    private int quantity;
 
 	public Classification() {}
 	
@@ -25,6 +28,14 @@ public class Classification {
 	}
 	public final void setName(String name) {
 		this.name = name;
+	}
+
+	public final int getQuantity() {
+		return quantity;
+	}
+
+	public final void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 

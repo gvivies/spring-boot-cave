@@ -14,9 +14,10 @@
 
         var viewModel = this;
 
-        // on Load
+        // On Load
         viewModel.labels = [];
         viewModel.data = [];
+        viewModel.total = 0;
 
         CrudService.resource(Constants.REGIONS_URI + "/withcount").list(function onSuccess(response) {
             var idx, item;
@@ -24,6 +25,7 @@
                 item = response[idx];
                 viewModel.labels.push(item.name);
                 viewModel.data.push(item.quantity);
+                viewModel.total += item.quantity;
             }
         });
 

@@ -84,11 +84,15 @@
                 .then(drinkOne);
         }
 
+        function filterBottlesHandler(bottle) {
+            return (UtilService.isBlank(viewModel.region) || viewModel.region.name == bottle.wine.region.name);
+        }
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
         viewModel.drink = drinkHandler;
+        viewModel.filterBottles = filterBottlesHandler;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
@@ -98,41 +102,36 @@
 
         // --- On load
 
-        function loadClassifications(listClassifications) {
-            formLists.push({
-                'name': 'classifications',
-                'content': listClassifications
+        function initBottleForm() {
+            CrudService.resource(Constants.WINES_URI).list(function (listWines) {
+                formLists.push({
+                    'name': 'wines',
+                    'content': listWines
+                });
             });
-        }
-
-        function loadWineries(listWineries) {
-            formLists.push({
-                'name': 'wineries',
-                'content': listWineries
+            CrudService.resource(Constants.WINERIES_URI).list(function (listWineries) {
+                formLists.push({
+                    'name': 'wineries',
+                    'content': listWineries
+                });
             });
-            CrudService.resource(Constants.CLASSIFICATIONS_URI).list(loadClassifications);
-        }
-
-        function loadWines(listWines) {
-            formLists.push({
-                'name': 'wines',
-                'content': listWines
+            CrudService.resource(Constants.CLASSIFICATIONS_URI).list(function (listClassifications) {
+                formLists.push({
+                    'name': 'classifications',
+                    'content': listClassifications
+                });
             });
-            CrudService.resource(Constants.WINERIES_URI).list(loadWineries);
+            viewModel.formSettings = {
+                size: "xxl",
+                template: "bottle.html",
+                uri: Constants.BOTTLES_URI,
+                lists: formLists
+            };
         }
 
-        function loadAllOtherLists() {
-            CrudService.resource(Constants.WINES_URI).list(loadWines);
-        }
+        viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list();
+        viewModel.items = CrudService.resource(Constants.BOTTLES_URI).list(initBottleForm);
 
-        viewModel.items = CrudService.resource(Constants.BOTTLES_URI).list(loadAllOtherLists);
-
-        viewModel.formSettings = {
-            size: "xxl",
-            template: "bottle.html",
-            uri: Constants.BOTTLES_URI,
-            lists: formLists
-        };
         $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
 

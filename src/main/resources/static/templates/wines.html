@@ -1,8 +1,9 @@
 <md-content class="app-main-content" layout-padding layout-wrap layout-fill>
     <md-input-container flex>
         <label>Région</label>
-        <md-select ng-model="ctrl.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région" required>
-            <md-option ng-value="reg" ng-repeat="reg in ctrl.regions">{{ reg.name }}</md-option>
+        <md-select ng-model="ctrl.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région">
+            <md-option value=""></md-option>
+            <md-option ng-value="reg" ng-repeat="reg in ctrl.regions | orderBy:'name'">{{ reg.name }}</md-option>
         </md-select>
     </md-input-container>
     <div flex="auto" layout="row" layout-wrap>
@@ -16,7 +17,9 @@
             </md-card-title>
             <md-card-title-media>
                 <div class="md-media-sm card-media">
-                    <div class="app-wine-picto"></div>
+                    <!-- <div class="app-wine-picto"> -->
+                    <div class="wine-count">{{item.quantity}}</div>
+                    <!-- </div> -->
                 </div>
             </md-card-title-media>
             <md-card-actions layout="row" layout-align="space-around start">

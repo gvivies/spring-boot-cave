@@ -22,12 +22,31 @@ public class BottleServiceImpl implements BottleService {
 				.mapToInt((x) -> x)
 				.summaryStatistics();
 			return stats.getSum();
-
 	}
 
 	@Override
 	public List<Bottle> findAll() {
 		return repository.findAll();
+	}
+
+	@Override
+	public void delete(Bottle bottle) {
+		repository.delete(bottle);		
+	}
+
+	@Override
+	public Bottle save(Bottle bottle) {
+		return repository.save(bottle);
+	}
+
+	@Override
+	public Bottle insert(Bottle bottle) {
+		return repository.insert(bottle);
+	}
+
+	@Override
+	public Bottle findOne(String id) {
+		return repository.findOne(id);
 	}
 	
 	

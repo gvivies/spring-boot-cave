@@ -67,6 +67,12 @@
                     </md-select>
                 </md-input-container>
             </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
+                <md-input-container flex>
+                    <label>Commentaire</label>
+                    <textarea ng-model="form.item.comment" rows="5"></textarea>
+                </md-input-container>
+            </div>
         </md-dialog-content>
         <md-dialog-actions class="md-actions" layout="row" layout-align="space-around center">
             <md-button ng-click="form.cancel()">Annuler</md-button>

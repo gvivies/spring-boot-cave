@@ -1,6 +1,8 @@
 package com.gvivies.cave.model;
 
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 public class Wine {
 	
@@ -8,6 +10,8 @@ public class Wine {
 	private String _id;
 	private String name;
 	private Region region;
+	@Transient
+	private int quantity;
 
 	public Wine() {}
 	
@@ -35,6 +39,14 @@ public class Wine {
 	public final void setRegion(Region region) {
 		this.region = region;
 	}	
+	public final int getQuantity() {
+		return quantity;
+	}
+
+	public final void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@Override
 	public String toString() {
 		return "Wine [name=" + name + ", region=" + region + "]";

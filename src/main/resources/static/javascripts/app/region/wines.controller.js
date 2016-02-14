@@ -69,7 +69,7 @@
         }
 
         function filterWinesHandler(wine) {
-            return (viewModel.region == undefined || viewModel.region.name == wine.region.name);
+            return (UtilService.isBlank(viewModel.region) || viewModel.region.name == wine.region.name);
         }
 
         function initWineForm(listRegions) {

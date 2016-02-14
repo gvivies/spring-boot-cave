@@ -378,6 +378,13 @@
         text-align: center;
     }
     
+    .wine-count {
+        font-weight: bold;
+        font-size: 24px;
+        padding-top: 10px;
+        text-align: center;
+    }
+    
     .medium-info {
         font-weight: bold;
         font-size: 18px;

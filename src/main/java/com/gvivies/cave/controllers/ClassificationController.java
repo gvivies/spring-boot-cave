@@ -11,38 +11,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gvivies.cave.model.Classification;
-import com.gvivies.cave.repositories.ClassificationRepository;
+import com.gvivies.cave.services.ClassificationService;
 
 @RestController
 @RequestMapping("/classifications")
 @PreAuthorize("hasAuthority('ROLE_DOMAIN_USER')")
 public class ClassificationController {
-
+	
 	@Autowired
-	private ClassificationRepository repository;
+	private ClassificationService service;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Classification> list() {	
-		return repository.findAll();
+		return service.findAllWithBottleCount();
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public Classification save(@RequestBody Classification classification ) {
-		repository.insert(classification);
-		return classification;
+		return service.insert(classification);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT)
 	public Classification update(@RequestBody Classification classification ) {
-		repository.save(classification);
-		return classification;
+		return service.save(classification);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="{id}")
 	  public void delete(@PathVariable String id) {
-		Classification classification = repository.findOne(id);
+		Classification classification = service.findOne(id);
 		if (classification!= null) {
-			repository.delete(classification);
+			service.delete(classification);
 		}	 
 	}
 }

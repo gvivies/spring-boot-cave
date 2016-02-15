@@ -15,20 +15,32 @@
         var viewModel = this;
 
         // On Load
-        viewModel.labels = [];
-        viewModel.data = [];
+        viewModel.labelsPerRegion = [];
+        viewModel.dataPerRegion = [];
+        viewModel.labelsPerClassif = [];
+        viewModel.dataPerClassif = [];
         viewModel.total = 0;
 
-        CrudService.resource(Constants.REGIONS_URI + "/withcount").list(function onSuccess(response) {
-            var idx, item;
-            for (idx = 0; idx < response.length; idx++) {
-                item = response[idx];
-                viewModel.labels.push(item.name);
-                viewModel.data.push(item.quantity);
-                viewModel.total += item.quantity;
-            }
-        });
+        function fillRegionsStatistics(item) {
+            viewModel.labelsPerRegion.push(item.name);
+            viewModel.dataPerRegion.push(item.quantity);
+            viewModel.total += item.quantity;
+        }
 
+        function fillClassifStatistics(item) {
+            viewModel.labelsPerClassif.push(item.name);
+            viewModel.dataPerClassif.push(item.quantity);
+        }
+
+        CrudService.resource(Constants.REGIONS_URI + "/withcount")
+            .list(function onSuccess(response) {
+                response.forEach(fillRegionsStatistics);
+            });
+
+        CrudService.resource(Constants.CLASSIFICATIONS_URI)
+            .list(function onSuccess(response) {
+                response.forEach(fillClassifStatistics);
+            });
 
         $rootScope.addItemElement = false;
         $scope.$broadcast(Constants.SHOW_MENU_EVENT);

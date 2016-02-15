@@ -40,7 +40,6 @@
                 };
                 formVM.isVisibleMap = true;
                 $scope.$emit(Constants.HIDE_MENU_EVENT);
-                //formVM.map.refresh = true;
                 uiGmapIsReady.promise().then(function (maps) {
                     $timeout(function () {
                         google.maps.event.trigger(formVM.map, 'resize');

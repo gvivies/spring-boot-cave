@@ -244,8 +244,17 @@
         background-position: 0px 3px;
         background-size: contain;
         background-repeat: no-repeat;
+        border: none;
+        cursor: pointer;
         height: 47px;
         width: 45px;
+    }
+    
+    .app-region-picto:focus,
+    .app-region-picto:active,
+    .region-count:focus,
+    .region-count:active {
+        border: none;
     }
     
     .app-dealer-picto {

@@ -1,12 +1,11 @@
 package com.gvivies.cave.services;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gvivies.cave.model.Bottle;
 import com.gvivies.cave.model.Region;
 import com.gvivies.cave.repositories.RegionRepository;
 
@@ -15,28 +14,29 @@ public class RegionServiceImpl implements RegionService {
 
 	@Autowired
 	private RegionRepository repository;
-	
+
 	@Autowired
 	private BottleService bottleService;
-	
+
 	@Override
 	public List<Region> findAll() {
 		return repository.findAll();
 	}
-	
+
 	@Override
 	public List<Region> findAllWithBottleCount() {
-		Map<String, Integer> counts = new HashMap<String,Integer>();
 		List<Region> regions = repository.findAll();
-		bottleService.findAll().forEach(t -> {
-			String region = t.getWine().getRegion().getId();
-			int value = (counts.containsKey(region)) ? counts.get(region) + t.getQuantity() : t.getQuantity();
-			counts.put(region, Integer.valueOf(value));
-		});
-		regions.forEach(t -> {
-			t.setQuantity(counts.containsKey(t.getId()) ? counts.get(t.getId()) : 0);
-		});
+		addBottleCountTo(regions);
 		return regions;
+	}
+
+	private void addBottleCountTo(List<Region> regions) {
+		List<Bottle> bottles = bottleService.findAll();
+		regions.forEach(r -> r.setQuantity(bottles.stream() //
+					.filter(b -> r.getId().equals(b.getWine().getRegion().getId()))  //
+					.map(b -> b.getQuantity()) //
+					.mapToInt((x) -> x) //
+					.sum()));	
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class RegionServiceImpl implements RegionService {
 	@Override
 	public void delete(Region region) {
 		repository.delete(region);
-		
+
 	}
 
 	@Override

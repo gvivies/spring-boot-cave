@@ -9,9 +9,9 @@
     angular.module('regions.controller', [])
         .controller('RegionsCtrl', RegionsCtrl);
 
-    RegionsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService'];
+    RegionsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService', '$location'];
 
-    function RegionsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService) {
+    function RegionsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService, $location) {
 
         var viewModel = this;
 
@@ -64,10 +64,14 @@
             $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La région " + item.name + " a été modifiée avec succès");
         }
 
+        function displayBottlesOfRegion(item) {
+            $location.path(Constants.BOTTLES_URI).search("region=" + item.id);
+        }
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
+        viewModel.displayBottlesOfRegion = displayBottlesOfRegion;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);

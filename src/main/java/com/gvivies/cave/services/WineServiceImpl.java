@@ -53,7 +53,6 @@ public class WineServiceImpl implements WineService {
 	@Override
 	public List<Wine> findAll() {
 		List<Wine> wines = new ArrayList<Wine>();
-
 		List<Wine> winesOfRegion = mongoTemplate.find(orderedBy("name"), Wine.class);
 		wines.addAll(winesOfRegion);
 		addBottleCountTo(wines);
@@ -81,8 +80,7 @@ public class WineServiceImpl implements WineService {
 	}
 	
 	private void addBottleCountTo(List<Wine> wines) {
-		List<Bottle> allBottles = bottleService.findAll();
-		
+		List<Bottle> allBottles = bottleService.findAll();	
 		wines.forEach(c -> c.setQuantity(allBottles.stream() //
 				.filter(b -> c.getId().equals(b.getWine().getId())) //
 				.map(b -> b.getQuantity()) //

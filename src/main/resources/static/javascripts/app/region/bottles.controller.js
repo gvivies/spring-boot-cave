@@ -4,12 +4,12 @@
 
     'use strict';
 
-    angular.module('bottles.controller', [])
+    angular.module('bottles.controller', ['ngRoute'])
         .controller('BottlesCtrl', BottlesCtrl);
 
-    BottlesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
+    BottlesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', '$routeParams'];
 
-    function BottlesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
+    function BottlesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService, $routeParams) {
 
         var viewModel = this,
             listWines = [],
@@ -93,6 +93,12 @@
             }
             return true;
         }
+
+        function afterRegionsLoad(regions) {
+            if (!UtilService.isBlank($routeParams.region)) {
+                viewModel.region = regions[UtilService.getIndex($routeParams.region, regions)];
+            }
+        }
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
@@ -126,6 +132,10 @@
                     'name': 'classifications',
                     'content': listClassifications
                 });
+                if (!UtilService.isBlank($routeParams.classif)) {
+                    viewModel.classification = listClassifications[UtilService.getIndex($routeParams.classif, listClassifications)];
+                }
+
             });
             viewModel.formSettings = {
                 size: "xxl",
@@ -135,7 +145,7 @@
             };
         }
 
-        viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list();
+        viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list(afterRegionsLoad);
         viewModel.items = CrudService.resource(Constants.BOTTLES_URI).list(initBottleForm);
 
         $rootScope.addItemElement = true;

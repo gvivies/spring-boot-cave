@@ -9,9 +9,9 @@
     angular.module('classifications.controller', [])
         .controller('ClassificationsCtrl', ClassificationsCtrl);
 
-    ClassificationsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService'];
+    ClassificationsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService', '$location'];
 
-    function ClassificationsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService) {
+    function ClassificationsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService, $location) {
 
         var viewModel = this;
 
@@ -68,10 +68,14 @@
             $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La classification " + item.name + " a été modifiée avec succès");
         }
 
+        function displayBottlesOfClassif(item) {
+            $location.path(Constants.BOTTLES_URI).search("classif=" + item.id);
+        }
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
+        viewModel.displayBottlesOfClassif = displayBottlesOfClassif;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);

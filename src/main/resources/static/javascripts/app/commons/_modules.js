@@ -18,8 +18,8 @@
 
     angular.module('confirm.service', []);
 
-    angular.module('spinner.service', ['ngRoute']);
-
     angular.module('geocode.service', []);
+
+    angular.module('spinner.directive', []);
 
 })();

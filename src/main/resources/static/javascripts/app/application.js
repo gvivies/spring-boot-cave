@@ -13,13 +13,11 @@
         //the message to be shown to the user
         message;
 
-    function defineRouting($routeProvider, $mdThemingProvider, $locationProvider, $httpProvider) {
+    function ConfigureApp($routeProvider, $mdThemingProvider, $locationProvider, $httpProvider) {
+
+        // --- Routing
+
         $routeProvider
-        /* .when('/login', {
-            templateUrl: 'templates/login.html',
-            controller: 'LoginCtrl',
-            controllerAs: 'ctrl'
-        }) */
             .when('/regions', {
                 templateUrl: 'templates/regions.html',
                 controller: 'RegionsCtrl',
@@ -55,8 +53,12 @@
 
         $mdThemingProvider.theme('default')
             .primaryPalette('indigo').accentPalette('grey');
+
         $locationProvider.html5Mode(false);
+
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
+
     }
 
     angular.module('cave', ['ngRoute',
@@ -69,7 +71,6 @@
                             'util.service',
                             'form.service',
                             'confirm.service',
-                            'spinner.service',
                             'login.controller',
                             'regions.controller',
                             'bottles.controller',
@@ -78,9 +79,12 @@
                             'wineries.controller',
                             'stats.controller',
                             'geocode.service',
-                            'location.directive'])
-        .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', defineRouting])
-        .run(function ($rootScope, Constants) {
-            $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);
-        });
+                            'location.directive',
+                            'spinner.directive'])
+        .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', ConfigureApp])
+
+    .run(function ($rootScope, Constants) {
+        $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);
+
+    });
 }());

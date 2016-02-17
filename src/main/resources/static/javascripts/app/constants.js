@@ -22,7 +22,9 @@
         "GEOCODING_API_URL": "http://maps.google.com/maps/api/geocode/json?sensor=false&language=fr",
         "GEOCODING_API_KEY": "AIzaSyDvPXa7RlrYiwVYj5w_CKt8YMTdGCcXfMk",
         "SHOW_LOCATION_EVENT": "SHOW_LOCATION_EVENT",
-        "HIDE_LOCATION_EVENT": "HIDE_LOCATION_EVENT"
+        "HIDE_LOCATION_EVENT": "HIDE_LOCATION_EVENT",
+        "SHOW_LOADING_EVENT": "SHOW_LOADING_EVENT",
+        "HIDE_LOADING_EVENT": "HIDE_LOADING_EVENT"
     });
 
 }());

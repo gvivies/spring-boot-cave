@@ -115,13 +115,26 @@
     /* =============== Application specific style ================ */
     
     #spinner {
-        background-color: transparent;
+        background-color: #ffffff;
         opacity: .6;
         position: fixed;
         height: 100%;
         vertical-align: top;
         width: 100%;
         z-index: 9900;
+    }
+    
+    .loading-spinner {
+        background-image: url('/cave/images/loading.gif');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 128px;
+        margin-bottom: auto;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: auto;
+        width: 128px;
+        z-index: 9901;
     }
     
     html,

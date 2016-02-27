@@ -1,19 +1,13 @@
-//=require_self
+//= require_tree commons
+//= require_self
 
-(function () {
+(function ClassificationController() {
 
     'use strict';
 
-    angular.module('wines.controller', [])
-        .controller('WinesCtrl', WinesCtrl);
+    function ClassificationsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService, $location) {
 
-    WinesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService'];
-
-    function WinesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService) {
-
-        var viewModel = this,
-            listRegions = [],
-            formLists = [];
+        var viewModel = this;
 
         // --- Handler functions 
         function onShowMenuEventHandler() {
@@ -32,19 +26,6 @@
             FormService.showForm($scope, UtilService.clone(item), viewModel.formSettings);
         }
 
-        function onCreatedItemEventHandler(event, item) {
-            viewModel.items.push(item);
-            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Le vin " + item.name + " a été créé avec succès");
-        }
-
-        function onUpdatedItemEventHandler(event, item) {
-            var idx = UtilService.getIndex(item.id, viewModel.items);
-            if (idx >= 0) {
-                viewModel.items[idx] = item;
-            }
-            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Le vin " + item.name + " a été modifié avec succès");
-        }
-
         function deleteItemHandler(item) {
 
             function removeItem() {
@@ -60,37 +41,35 @@
                     $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La suppression de " + item.name + " a été effectuée avec succès");
                 }
 
-                CrudService.resource(Constants.WINES_URI + '/' + item.id)
+                CrudService.resource(Constants.CLASSIFICATIONS_URI + '/' + item.id)
                     .remove(onRemoveSuccess, onRemoveError);
             }
 
-            ConfirmService.confirmDelete(item, 'le vin')
+            ConfirmService.confirmDelete(item, 'la classification')
                 .then(removeItem);
         }
 
-        function filterWinesHandler(wine) {
-            return (UtilService.isBlank(viewModel.region) || viewModel.region.name == wine.region.name);
+        function onCreatedItemEventHandler(event, item) {
+            viewModel.items.push(item);
+            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La classification " + item.name + " a été créée avec succès");
         }
 
-        function initWineForm(listRegions) {
-            formLists.push({
-                'name': 'regions',
-                'content': listRegions
-            });
-
-            viewModel.formSettings = {
-                size: "xxl",
-                template: "wine.html",
-                uri: Constants.WINES_URI,
-                lists: formLists
-            };
+        function onUpdatedItemEventHandler(event, item) {
+            var idx = UtilService.getIndex(item.id, viewModel.items);
+            if (idx >= 0) {
+                viewModel.items[idx] = item;
+            }
+            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La classification " + item.name + " a été modifiée avec succès");
         }
 
+        function displayBottlesOfClassif(item) {
+            $location.path(Constants.BOTTLES_URI).search("classif=" + item.id);
+        }
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
-        viewModel.filterWines = filterWinesHandler;
+        viewModel.displayBottlesOfClassif = displayBottlesOfClassif;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
@@ -100,11 +79,18 @@
 
         // --- On load
 
-        viewModel.items = CrudService.resource(Constants.WINES_URI).list();
-        viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list(initWineForm);
-        viewModel.region = {};
+        viewModel.items = CrudService.resource(Constants.CLASSIFICATIONS_URI).list();
+        viewModel.formSettings = {
+            size: "xxl",
+            template: "classification.html",
+            uri: Constants.CLASSIFICATIONS_URI
+        };
         $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
     }
 
+    ClassificationsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService', '$location'];
+
+    angular.module('classifications.controller', [])
+        .controller('ClassificationsCtrl', ClassificationsCtrl);
 }());

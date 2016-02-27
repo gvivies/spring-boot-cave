@@ -1,33 +1,25 @@
 <md-content class="app-main-content" layout-padding layout-wrap layout-fill>
-    <div layout="row">
-        <div class="md-headline app-view-title">Liste des utilisateurs</div>
-        <div class="app-title-button">
-            <md-button class="md-fab" aria-label="Ajouter une région" ng-click="ctrl.createItem()">
-                <md-icon class="app-icon-white" md-svg-src="/cave/images/icons/plus.svg"></md-icon>
-            </md-button>
-        </div>
-    </div>
-    <div flex="auto" layout="row" layout-wrap>
-        <md-card class="card" ng-repeat="item in ctrl.items | orderBy:'name'">
+    <div flex="auto" layout="row" layout-xs="column" layout-wrap>
+        <md-card class="card" ng-repeat="item in ctrl.items | orderBy:'username'">
             <md-card-title class="app-card-title">
                 <md-card-title-text>
-                    <span class="md-headline">{{item.name}}</span>
+                    <span class="md-headline">{{item.username}}</span>
                     <br />
-                    <span class="md-subhead">Région</span>
+                    <span class="md-subhead">{{ctrl.getRoleName(item.role)}}</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-title-media>
                 <div class="md-media-sm card-media">
-                    <div class="app-region-picto"></div>
+                    <div class="app-user-picto"></div>
                 </div>
             </md-card-title-media>
             <md-card-content class="app-card-content-small">
             </md-card-content>
-            <md-card-actions layout="row" layout-align="end start">
-                <md-button class="md-fab md-mini" aria-label="Modifier" ng-click="ctrl.editItem(item)">
+            <md-card-actions layout="row" layout-align="space-around start">
+                <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>
                 </md-button>
-                <md-button class="md-fab md-mini" aria-label="Supprimer" ng-click="ctrl.deleteItem(item)">
+                <md-button class="md-cornered" aria-label="Supprimer" ng-click="ctrl.deleteItem(item)">
                     <md-icon md-svg-src="/cave/images/icons/delete.svg"></md-icon>
                 </md-button>
             </md-card-actions>

@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    function menuService($rootScope) {
+    function menuService($rootScope, Constants) {
 
         var menuItem = "",
             service = {};
@@ -20,13 +20,16 @@
 
         service.broadcastMenuSelectedEvent = function broadcastMenuSelectedEvent(title) {
             $rootScope.selectedMenuTitle = title;
-            $rootScope.$broadcast('MenuSelectedEvent');
+            $rootScope.$broadcast(Constants.MENU_SELECTED_EVENT);
         };
 
         return service;
     }
 
+
     angular.module('menu.service')
         .factory('MenuService', menuService);
+
+    menuService.$inject = ['$rootScope', 'Constants'];
 
 }());

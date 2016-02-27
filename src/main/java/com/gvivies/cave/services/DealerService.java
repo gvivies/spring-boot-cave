@@ -5,9 +5,10 @@ import java.util.List;
 import com.gvivies.cave.model.Dealer;
 
 public interface DealerService {
-	public List<Dealer> findAll();
-	public Dealer findOne(String id);
-	public void delete(Dealer dealer);
-	public Dealer save(Dealer dealer);
-	public Dealer insert(Dealer dealer);
+	List<Dealer> findAll();
+	Dealer findOne(String id);
+	void delete(Dealer dealer);
+	void deleteAllForUser(String owner);
+	Dealer save(Dealer dealer);
+	Dealer insert(Dealer dealer);
 }

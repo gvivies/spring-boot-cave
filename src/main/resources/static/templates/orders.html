@@ -1,0 +1,36 @@
+<md-content class="app-main-content" layout-padding layout-wrap layout-fill>
+    <div flex="auto" layout="row" layout-xs="column" layout-wrap>
+        <md-card class="card" ng-repeat="item in ctrl.items | filter:ctrl.filterBottles | orderBy:'name'">
+            <md-card-title class="app-card-title">
+                <md-card-title-text>
+                    <span class="md-headline">{{item.name}}</span>
+                    <br />
+                    <span class="md-subhead white">{{item.wine.name}}</span>
+                </md-card-title-text>
+                <span flex></span>
+            </md-card-title>
+            <md-card-title-media>
+                <div class="md-media-sm card-media">
+                    <div class="bottle-count">{{item.quantity}}</div>
+                </div>
+            </md-card-title-media>
+            <md-card-content class="app-card-content-small">
+                <div layout="row" layout-xs="column">
+                    <div flex class="fieldvalue medium-info">{{item.classification.name}}</div>
+                    <div flex class="fieldvalue medium-info">{{item.year}}</div>
+                </div>
+                <div layout="row" layout-xs="column">
+                    <div flex class="fieldlabel">A boire entre {{item.yearMin}} et {{item.yearMax}}</div>
+                </div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="space-around start">
+                <md-button class="md-cornered" aria-label="Modifier" ng-click="ctrl.editItem(item)">
+                    <md-icon md-svg-src="/cave/images/icons/edit.svg"></md-icon>
+                </md-button>
+                <md-button class="md-cornered" aria-label="Supprimer" ng-click="ctrl.deleteItem(item)">
+                    <md-icon md-svg-src="/cave/images/icons/delete.svg"></md-icon>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</md-content>

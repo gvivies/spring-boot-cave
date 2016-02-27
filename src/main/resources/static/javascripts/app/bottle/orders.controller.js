@@ -4,12 +4,7 @@
 
     'use strict';
 
-    angular.module('bottles.controller', ['ngRoute'])
-        .controller('BottlesCtrl', BottlesCtrl);
-
-    BottlesCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', '$routeParams'];
-
-    function BottlesCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService, $routeParams) {
+    function OrdersCtrl($scope, $rootScope, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService, $routeParams) {
 
         var viewModel = this,
             listWines = [],
@@ -36,7 +31,7 @@
 
         function onCreatedItemEventHandler(event, item) {
             viewModel.items.push(item);
-            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Les bouteilles " + item.name + " ont été créées avec succès");
+            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La bouteilles " + item.name + " ont été créées avec succès");
         }
 
         function onUpdatedItemEventHandler(event, item) {
@@ -99,6 +94,8 @@
                 viewModel.region = regions[UtilService.getIndex($routeParams.region, regions)];
             }
         }
+
+
         // --- Attaching functions and events handler
 
         viewModel.editItem = editItemHandler;
@@ -135,7 +132,6 @@
                 if (!UtilService.isBlank($routeParams.classif)) {
                     viewModel.classification = listClassifications[UtilService.getIndex($routeParams.classif, listClassifications)];
                 }
-
             });
             viewModel.formSettings = {
                 size: "xxl",
@@ -146,12 +142,26 @@
         }
 
         viewModel.regions = CrudService.resource(Constants.REGIONS_URI).list(afterRegionsLoad);
-        viewModel.items = CrudService.resource(Constants.BOTTLES_URI).list(initBottleForm);
-
+        viewModel.items = CrudService.resource(Constants.ORDERED_BOTTLES_URI).list(initBottleForm);
+        viewModel.exportHeaders = {
+            name: 'Nom',
+            'wine.name': 'Appellation',
+            'wine.region.name': 'Region',
+            'dealer.name': 'Domaine',
+            'classification.name': 'Type',
+            year: 'Millesime',
+            quantity: 'Quantite',
+            price: 'Price'
+        };
         $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
 
-
     }
+
+    OrdersCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', '$routeParams'];
+
+    angular.module('bottles.controller')
+        .controller('OrdersCtrl', OrdersCtrl);
+
 
 }());

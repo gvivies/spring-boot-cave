@@ -35,7 +35,7 @@
     /*
      * Controller managing dialog form
      */
-    function DialogCtrl($scope, $mdDialog, locals, Constants, CrudService, UtilService) {
+    function DialogCtrl($scope, $mdDialog, locals, Constants, CrudService, UtilService, AuthService) {
 
         var formVM = this;
 
@@ -44,6 +44,7 @@
         formVM.uri = locals.uri;
         formVM.lists = [];
         formVM.beforeSave = locals.beforeSave;
+        formVM.authenticatedUser = AuthService.getAuthenticatedUser();
 
         // Initializing all lists for select objects 
         if (locals.lists !== undefined) {
@@ -88,7 +89,7 @@
         }
 
         function onCreateError(response) {
-            locals.scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la création : " + response.data.errors);
+            locals.scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue : " + response.data.message);
         }
 
         function onUpdateSuccess() {
@@ -97,7 +98,7 @@
         }
 
         function onUpdateError(response) {
-            locals.scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la modification : " + "\n" + response.data.errors);
+            locals.scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue : " + response.data.message);
         }
 
         // --- Available UI functions
@@ -108,6 +109,7 @@
         }
 
         function saveHandler() {
+            formVM.item.ownedBy = formVM.authenticatedUser.id;
             if (formVM.beforeSave !== undefined) {
                 formVM.beforeSave(formVM.item).then(function (data) {
                     formVM.item = data;
@@ -141,7 +143,9 @@
         $scope.$on(Constants.EDIT_ITEM_EVENT, onEditItemEventHandler);
     }
 
+    DialogCtrl.$inject = ['$scope', '$mdDialog', 'locals', 'Constants', 'CrudService', 'UtilService', 'AuthService'];
+
     angular.module('form.service')
         .factory('FormService', ['$mdDialog', formService])
-        .controller('DialogCtrl', ['$scope', '$mdDialog', 'locals', 'Constants', 'CrudService', 'UtilService', DialogCtrl]);
+        .controller('DialogCtrl', DialogCtrl);
 }());

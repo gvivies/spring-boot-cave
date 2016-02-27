@@ -4,11 +4,6 @@
 
     'use strict';
 
-    angular.module('wineries.controller', [])
-        .controller('WineriesCtrl', WineriesCtrl);
-
-    WineriesCtrl.$inject = ['$scope', '$rootScope', '$q', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', 'GeoCodeService'];
-
     function WineriesCtrl($scope, $rootScope, $q, CrudService, Constants, FormService, UtilService, $mdDialog, ConfirmService, GeoCodeService) {
 
         var viewModel = this,
@@ -130,5 +125,10 @@
         $scope.$emit(Constants.SHOW_MENU_EVENT);
 
     }
+
+    WineriesCtrl.$inject = ['$scope', '$rootScope', '$q', 'CrudService', 'Constants', 'FormService', 'UtilService', '$mdDialog', 'ConfirmService', 'GeoCodeService'];
+
+    angular.module('wineries.controller', [])
+        .controller('WineriesCtrl', WineriesCtrl);
 
 }());

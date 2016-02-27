@@ -69,6 +69,13 @@
             </div>
             <div class="app-dialog-content-large" layout="row" layout-xs="column">
                 <md-input-container flex>
+                    <md-checkbox ng-model="form.item.ordered" aria-label="En commande">
+                        En commande
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+            <div class="app-dialog-content-large" layout="row" layout-xs="column">
+                <md-input-container flex>
                     <label>Commentaire</label>
                     <textarea ng-model="form.item.comment" rows="5"></textarea>
                 </md-input-container>

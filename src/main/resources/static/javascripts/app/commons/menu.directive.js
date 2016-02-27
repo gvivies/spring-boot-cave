@@ -43,6 +43,12 @@
                         menuTitle = 'Les types';
                         nextUri = 'classifications';
                     } else if (idx === 6) {
+                        menuTitle = 'Les utilisateurs';
+                        nextUri = 'users';
+                    } else if (idx === 7) {
+                        menuTitle = 'Les commandes';
+                        nextUri = 'orders';
+                    } else if (idx === 8) {
                         menuTitle = 'Les statistiques';
                         nextUri = 'stats';
                     }
@@ -57,7 +63,6 @@
                 }
 
                 /* Menu management */
-
                 function debounce(func, wait, context) {
                     var timer;
                     return function debounced() {
@@ -76,23 +81,19 @@
                         .then(function () {
                             //$log.debug("Close is done");
                         });
-                };
+                }
 
                 function buildDelayedToggler() {
-                    //return debounce(function () {
                     $mdSidenav('left')
                         .toggle()
-                        .then(function () {
-                            //$log.debug("Toggle menu is done");
-                        });
-                    //}, 200);
+                        .then(function () {});
                 }
 
                 /* on Load */
 
                 var menuVM = this;
 
-                menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Types', 'Statistiques'];
+                menuVM.menuLabel = ['Bouteilles', 'Appellations', 'Régions', 'Domaines', 'Types', 'Utilisateurs', 'Commandes', 'Statistiques'];
                 menuVM.openMenu = openMenu;
                 menuVM.selectMenu = selectMenu;
                 menuVM.add = onAddButtonClick;

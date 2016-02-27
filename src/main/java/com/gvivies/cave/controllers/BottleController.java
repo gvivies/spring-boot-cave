@@ -14,30 +14,35 @@ import com.gvivies.cave.model.Bottle;
 import com.gvivies.cave.services.BottleService;
 
 @RestController
-@RequestMapping("/bottles")
 @PreAuthorize("hasAuthority('ROLE_DOMAIN_USER')")
 public class BottleController {
 	
 	@Autowired
 	private BottleService bottleService;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/bottles", method=RequestMethod.GET)
 	public List<Bottle> list() {
 		List<Bottle> bottles = bottleService.findAll();
 		return bottles;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="/orders", method=RequestMethod.GET)
+	public List<Bottle> listOrdered() {
+		List<Bottle> bottles = bottleService.findAllOrdered();
+		return bottles;
+	}
+	
+	@RequestMapping(value="/bottles", method=RequestMethod.POST)
 	public Bottle save(@RequestBody Bottle bottle ) {
 		return bottleService.insert(bottle);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT)
+	@RequestMapping(value="/bottles", method=RequestMethod.PUT)
 	public Bottle update(@RequestBody Bottle bottle ) {
 		return bottleService.save(bottle);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/bottles/{id}")
 	  public void delete(@PathVariable String id) {
 		Bottle bottle = bottleService.findOne(id);
 		if (bottle!= null) {
@@ -45,13 +50,13 @@ public class BottleController {
 		}	 
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/drink")
+	@RequestMapping(method=RequestMethod.PUT, value="/bottles/drink")
 	public Bottle drink(@RequestBody Bottle bottle) {
 		bottle.setQuantity(bottle.getQuantity() - 1);
 		return bottleService.save(bottle);				
 	} 
 	
-	@RequestMapping(method=RequestMethod.GET, value="/countall")
+	@RequestMapping(method=RequestMethod.GET, value="/bottles/countall")
 	public long countAll() {
 		return bottleService.countAll();
 	} 

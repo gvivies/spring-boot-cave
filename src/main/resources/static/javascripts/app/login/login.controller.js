@@ -1,40 +1,41 @@
 (function () {
     'use strict';
 
-    function LoginCtrl($location, $rootScope, $http) {
+    function LoginCtrl($location, $rootScope, $http, $scope, Constants, AuthService) {
 
         var viewModel = this;
 
         function authenticate(user, callback) {
             var headers = user ? {
                 authorization: "Basic " + //
-                    btoa(user.name + ":" + //
+                    btoa(user.username + ":" + //
                         user.password)
             } : {};
 
-            $http.get('user', {
+            $http.get('login', {
                     headers: headers
                 })
                 .success(function (data) {
-                    if (data.name) {
-                        $rootScope.authenticated = true;
+                    if (data.username) {
+                        AuthService.setAuthenticatedUser(data);
                     } else {
-                        $rootScope.authenticated = false;
+                        $scope.$emit(Constants.DISPLAY_MSG_EVENT, "L'utilisateur et/ou le mot de passe sont incorrects.");
                     }
                     callback && callback();
                 }).error(function () {
-                    $rootScope.authenticated = false;
+                    AuthService.setAuthenticated(undefined);
+                    $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de l'authentification.");
                     callback && callback();
                 });
 
         }
 
         function onAuthentication() {
-            if ($rootScope.authenticated) {
+            if (AuthService.isLoggedIn()) {
                 $location.path('bottles');
                 viewModel.error = false;
             } else {
-                $location.path("/login");
+                $location.path("login");
                 viewModel.error = true;
             }
         }
@@ -46,7 +47,7 @@
         viewModel.login = login;
     }
 
-    LoginCtrl.$inject = ['$location', '$rootScope', '$http'];
+    LoginCtrl.$inject = ['$location', '$rootScope', '$http', '$scope', 'Constants', 'AuthService'];
 
     angular.module('login.controller', [])
         .controller('LoginCtrl', LoginCtrl);

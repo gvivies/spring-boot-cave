@@ -53,13 +53,13 @@
     
     .md-sidenav-left {
         left: 62px;
-        height: 360px;
+        height: 450px;
         position: absolute;
     }
     
     md-menu-content {
-        height: 360px;
-        max-height: 360px;
+        height: 450px;
+        max-height: 450px;
     }
     /* =============== Overriding Angular Chart ================ */
     
@@ -114,10 +114,17 @@
     }
     /* =============== Application specific style ================ */
     
+    .form-login {
+        margin-left: auto;
+        margin-right: auto;
+        width: 440px;
+    }
+    
     #spinner {
-        background-color: #ffffff;
-        opacity: .6;
+        background-color: transparent;
+        opacity: .9;
         position: fixed;
+        float: left;
         height: 100%;
         vertical-align: top;
         width: 100%;
@@ -127,13 +134,13 @@
     .loading-spinner {
         background-image: url('/cave/images/loading.gif');
         background-size: contain;
+        background-position: 0px 0px;
         background-repeat: no-repeat;
-        height: 128px;
-        margin-bottom: auto;
-        margin-top: auto;
+        height: 48px;
+        margin-top: 12px;
         margin-left: auto;
-        margin-right: auto;
-        width: 128px;
+        margin-right: 94px;
+        width: 48px;
         z-index: 9901;
     }
     
@@ -311,6 +318,15 @@
         height: 24px;
         width: 24px;
     }
+    
+    .app-user-picto {
+        background-image: url("/cave/images/user.png");
+        background-position: 2px 1px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 48px;
+        width: 48px;
+    }
     /* Cards */
     
     .app-card-title {
@@ -418,6 +434,10 @@
         width: 340px;
     }
     
+    .card-xxl {
+        width: 440px;
+    }
+    
     .white {
         color: #ffffff;
     }
@@ -435,6 +455,12 @@
         margin-left: auto;
         margin-right: auto;
         width: 90%;
+    }
+    
+    .export-btn {
+        margin-bottom: -12px;
+        padding-left: 12px;
+        padding-top: 12px;
     }
     /* Retina Screens */
     

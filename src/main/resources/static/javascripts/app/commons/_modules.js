@@ -22,4 +22,8 @@
 
     angular.module('spinner.directive', []);
 
+    angular.module('authent.service', []);
+
+    angular.module('csrf.service', ['ngCookies']);
+
 })();

@@ -19,28 +19,28 @@ import com.gvivies.cave.services.ClassificationService;
 public class ClassificationController {
 	
 	@Autowired
-	private ClassificationService service;
+	private ClassificationService classifService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Classification> list() {	
-		return service.findAllWithBottleCount();
+		return classifService.findAllWithBottleCount();
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public Classification save(@RequestBody Classification classification ) {
-		return service.insert(classification);
+		return classifService.insert(classification);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT)
 	public Classification update(@RequestBody Classification classification ) {
-		return service.save(classification);
+		return classifService.save(classification);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="{id}")
 	  public void delete(@PathVariable String id) {
-		Classification classification = service.findOne(id);
+		Classification classification = classifService.findOne(id);
 		if (classification!= null) {
-			service.delete(classification);
+			classifService.delete(classification);
 		}	 
 	}
 }

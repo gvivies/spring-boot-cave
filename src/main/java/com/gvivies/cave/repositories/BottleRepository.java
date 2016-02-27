@@ -8,7 +8,7 @@ import com.gvivies.cave.model.Bottle;
 
 public interface BottleRepository extends MongoRepository<Bottle, String> {
 
-	public Bottle findByName(String name);
-	public List<Bottle> findAll();
+	public Bottle findByNameAndOwnedBy(String name, String ownedBy);
+	public List<Bottle> findByOwnedBy(String ownedBy);
 	
 }

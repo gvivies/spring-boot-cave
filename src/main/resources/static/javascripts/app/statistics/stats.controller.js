@@ -1,14 +1,7 @@
 //=require_self
 
 (function () {
-
     'use strict';
-
-
-    angular.module('stats.controller', [])
-        .controller('StatsCtrl', StatsCtrl);
-
-    StatsCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants'];
 
     function StatsCtrl($scope, $rootScope, CrudService, Constants) {
 
@@ -47,5 +40,9 @@
 
     }
 
+    StatsCtrl.$inject = ['$scope', '$rootScope', 'CrudService', 'Constants'];
+
+    angular.module('stats.controller', [])
+        .controller('StatsCtrl', StatsCtrl);
 
 }());

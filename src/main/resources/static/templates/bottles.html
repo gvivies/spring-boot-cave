@@ -1,18 +1,23 @@
 <md-content class="app-main-content" layout-padding layout-wrap layout-fill>
     <div flex="auto" layout="row" layout-xs="column" layout-wrap>
-        <md-input-container flex>
+        <md-input-container flex="{{(ctrl.isExportVisible()) ? 45 : 50}}">
             <label>Région</label>
             <md-select ng-model="ctrl.region" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner une région">
                 <md-option value=""></md-option>
                 <md-option ng-value="reg" ng-repeat="reg in ctrl.regions | orderBy:'name'">{{ reg.name }}</md-option>
             </md-select>
         </md-input-container>
-        <md-input-container flex>
+        <md-input-container flex="{{(ctrl.isExportVisible()) ? 45 : 50}}">
             <label>Type</label>
             <md-select ng-model="ctrl.classification" ng-model-options="{trackBy: '$value.id'}" placeholder="Selectionner un type">
                 <md-option value=""></md-option>
                 <md-option ng-value="classif" ng-repeat="classif in ctrl.classifications | orderBy:'name'">{{ classif.name }}</md-option>
             </md-select>
+        </md-input-container>
+        <md-input-container flex="10" class="export-btn" ng-show="ctrl.isExportVisible()">
+            <md-button class="md-fab md-mini" ng-json-export-excel data="ctrl.items" report-fields="ctrl.exportHeaders" filename="bottles" aria-label="Exporter">
+                <md-icon md-svg-src="/cave/images/icons/export.svg"></md-icon>
+            </md-button>
         </md-input-container>
     </div>
     <div flex="auto" layout="row" layout-xs="column" layout-wrap>

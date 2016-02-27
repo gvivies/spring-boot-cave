@@ -5,7 +5,7 @@ package com.gvivies.cave.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-public class Region {
+public class Region extends Possessor {
 
 	@Id
 	private String id;
@@ -15,9 +15,10 @@ public class Region {
 
 	public Region() {}
 
-	public Region(String name) {
+	public Region(String name, String ownedBy) {
 		super();
 		this.name = name;
+		this.ownedBy = ownedBy;
 	}
 
 	public final String getId() {

@@ -2,7 +2,7 @@ package com.gvivies.cave.model;
 
 import org.springframework.data.annotation.Id;
 
-public class Dealer {
+public class Dealer extends Possessor {
 
 	@Id
 	private String _id;	
@@ -21,7 +21,7 @@ public class Dealer {
 	public Dealer() {}
 
 	public Dealer(String name, String street, String zipCode, String city, String telephone, String email,
-			String webSite, String comment, String latitude, String longitude, Region region) {
+			String webSite, String comment, String latitude, String longitude, Region region, String ownedBy) {
 		super();
 		this.name = name;
 		this.street = street;
@@ -34,6 +34,7 @@ public class Dealer {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.region = region;
+		this.ownedBy = ownedBy;
 	}
 	public final String getId() {
 		return _id;

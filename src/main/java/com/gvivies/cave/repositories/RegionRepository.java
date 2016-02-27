@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface RegionRepository extends MongoRepository<Region, String> {
 	
-	public Region findByName(String name);
-	public List<Region> findAllOrderByName();
-	
+	Region findByNameAndOwnedBy(String name, String ownedBy);
+	List<Region> findByOwnedByOrderByName(String ownedBy);	
 }

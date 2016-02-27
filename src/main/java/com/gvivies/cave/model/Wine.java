@@ -4,7 +4,7 @@ package com.gvivies.cave.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-public class Wine {
+public class Wine extends Possessor {
 	
 	@Id
 	private String _id;
@@ -15,10 +15,11 @@ public class Wine {
 
 	public Wine() {}
 	
-	public Wine(String name, Region region) {
+	public Wine(String name, Region region, String ownedBy) {
 		super();
 		this.name = name;
 		this.region = region;
+		this.ownedBy = ownedBy;
 	}
 
 	public final String getId() {

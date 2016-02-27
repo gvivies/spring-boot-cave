@@ -5,11 +5,12 @@ import java.util.List;
 import com.gvivies.cave.model.Wine;
 
 public interface WineService {
-	public List<Wine> findAll(); 
-	public List<Wine> findAllByRegion(String region); 
-	public List<Wine> findAllWithBottleCount();
-	public Wine findOne(String id);
-	public void delete(Wine wine);
-	public Wine save(Wine wine);
-	public Wine insert(Wine wine);
+	List<Wine> findAll(); 
+	List<Wine> findAllByRegion(String region); 
+	List<Wine> findAllWithBottleCount();
+	Wine findOne(String id);
+	void delete(Wine wine);
+	void deleteAllForUser(String owner);
+	Wine save(Wine wine);
+	Wine insert(Wine wine);
 }

@@ -14,9 +14,7 @@
         message;
 
     function ConfigureApp($routeProvider, $mdThemingProvider, $locationProvider, $httpProvider) {
-
         // --- Routing
-
         $routeProvider
             .when('/regions', {
                 templateUrl: 'templates/regions.html',
@@ -43,12 +41,28 @@
                 controller: 'BottlesCtrl',
                 controllerAs: 'ctrl'
             })
+            .when('/users', {
+                templateUrl: 'templates/users.html',
+                controller: 'UserCtrl',
+                controllerAs: 'ctrl'
+            })
+            .when('/orders', {
+                templateUrl: 'templates/orders.html',
+                controller: 'OrdersCtrl',
+                controllerAs: 'ctrl'
+            })
             .when('/stats', {
                 templateUrl: 'templates/statistics.html',
                 controller: 'StatsCtrl',
                 controllerAs: 'ctrl'
+            })
+            .when('/login', {
+                templateUrl: 'templates/login.html',
+                controller: 'LoginCtrl',
+                controllerAs: 'ctrl'
+
             }).otherwise({
-                redirectTo: '/bottles'
+                redirectTo: '/login'
             });
 
         $mdThemingProvider.theme('default')
@@ -58,8 +72,11 @@
 
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
+        $httpProvider.interceptors.push('XSRFInterceptor');
 
     }
+
+    ConfigureApp.$inject = ['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider'];
 
     angular.module('cave', ['ngRoute',
                             'ngMaterial',
@@ -80,11 +97,27 @@
                             'stats.controller',
                             'geocode.service',
                             'location.directive',
-                            'spinner.directive'])
-        .config(['$routeProvider', '$mdThemingProvider', '$locationProvider', '$httpProvider', ConfigureApp])
+                            'spinner.directive',
+                            'user.controller',
+                            'authent.service',
+                            'csrf.service',
+                            'ngJsonExportExcel'])
+        .config(ConfigureApp)
+        .run(function ($rootScope, Constants, AuthService, $location) {
 
-    .run(function ($rootScope, Constants) {
-        $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);
+            $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                //if ((next.$$route === undefined || next.$$route.originalPath !== '/login')) {
+                if (next.indexOf('/login') === -1 && next !== current) {
+                    if (!AuthService.isLoggedIn()) {
+                        event.preventDefault();
+                        $rootScope.$evalAsync(function () {
+                            $location.path('/login');
+                        });
+                    }
+                }
+            });
 
-    });
+            $rootScope.$broadcast(Constants.SHOW_MENU_EVENT);
+        });
+
 }());

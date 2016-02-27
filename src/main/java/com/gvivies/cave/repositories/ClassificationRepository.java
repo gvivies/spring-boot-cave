@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.gvivies.cave.model.Classification;
 
 public interface ClassificationRepository extends MongoRepository<Classification, String> {
-	public Classification findByName();
-	public List<Classification> findAllOrderByName();
+	public Classification findByNameAndOwnedBy(String name, String ownedBy);
+	public List<Classification> findByOwnedByOrderByName(String ownedBy);
 }

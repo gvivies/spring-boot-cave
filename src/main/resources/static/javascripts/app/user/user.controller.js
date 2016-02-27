@@ -1,21 +1,13 @@
-//= require_tree commons
-//= require_self
-
-(function ClassificationController() {
-
+(function () {
     'use strict';
 
+    function UserCtrl($rootScope, $scope, Constants, CrudService, FormService, ConfirmService, UtilService) {
 
-    angular.module('classifications.controller', [])
-        .controller('ClassificationsCtrl', ClassificationsCtrl);
+        var viewModel = this,
+            formLists = [];
 
-    ClassificationsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService', '$location'];
+        // --- Handlers functions
 
-    function ClassificationsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService, $location) {
-
-        var viewModel = this;
-
-        // --- Handler functions 
         function onShowMenuEventHandler() {
             viewModel.displayMenu = true;
         }
@@ -33,31 +25,27 @@
         }
 
         function deleteItemHandler(item) {
-
             function removeItem() {
-
                 function onRemoveError() {
-                    $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la suppression de " + item.name);
+                    $scope.$emit(Constants.DISPLAY_MSG_EVENT, "Une erreur est survenue lors de la suppression de " + item.username);
                 }
 
                 function onRemoveSuccess() {
                     var itemList = $scope.ctrl.items,
                         idx = itemList.indexOf(item);
                     itemList.splice(idx, 1);
-                    $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La suppression de " + item.name + " a été effectuée avec succès");
+                    $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La suppression de " + item.username + " a été effectuée avec succès");
                 }
-
-                CrudService.resource(Constants.CLASSIFICATIONS_URI + '/' + item.id)
+                CrudService.resource(Constants.USERS_URI + '/' + item.id)
                     .remove(onRemoveSuccess, onRemoveError);
             }
-
-            ConfirmService.confirmDelete(item, 'la classification')
+            ConfirmService.confirmDelete(item, "l'utilisateur")
                 .then(removeItem);
         }
 
         function onCreatedItemEventHandler(event, item) {
             viewModel.items.push(item);
-            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La classification " + item.name + " a été créée avec succès");
+            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "L'utilisateur " + item.username + " a été créé avec succès");
         }
 
         function onUpdatedItemEventHandler(event, item) {
@@ -65,17 +53,33 @@
             if (idx >= 0) {
                 viewModel.items[idx] = item;
             }
-            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "La classification " + item.name + " a été modifiée avec succès");
+            $scope.$emit(Constants.DISPLAY_MSG_EVENT, "L'utilisateur " + item.username + " a été modifié avec succès");
         }
 
-        function displayBottlesOfClassif(item) {
-            $location.path(Constants.BOTTLES_URI).search("classif=" + item.id);
+        function initForm(listRoles) {
+            formLists.push({
+                'name': 'roles',
+                'content': listRoles
+            });
+
+            viewModel.formSettings = {
+                size: "xxl",
+                template: "user.html",
+                uri: Constants.USERS_URI,
+                lists: formLists
+            };
         }
-        // --- Attaching functions and events handler
+
+        function getRoleName(id) {
+            var idx = UtilService.getIndex(id, viewModel.roles);
+            return viewModel.roles[idx].roleName;
+        }
+
+        // --- Attaching UI functions
 
         viewModel.editItem = editItemHandler;
         viewModel.deleteItem = deleteItemHandler;
-        viewModel.displayBottlesOfClassif = displayBottlesOfClassif;
+        viewModel.getRoleName = getRoleName;
 
         $scope.$on(Constants.CREATED_ITEM_EVENT, onCreatedItemEventHandler);
         $scope.$on(Constants.UPDATED_ITEM_EVENT, onUpdatedItemEventHandler);
@@ -85,15 +89,17 @@
 
         // --- On load
 
-        viewModel.items = CrudService.resource(Constants.CLASSIFICATIONS_URI).list();
-        viewModel.formSettings = {
-            size: "xxl",
-            template: "classification.html",
-            uri: Constants.CLASSIFICATIONS_URI
-        };
+        viewModel.items = CrudService.resource(Constants.USERS_URI).list();
+        viewModel.roles = CrudService.resource(Constants.USER_ROLES_URI).list(initForm);
+
         $rootScope.addItemElement = true;
         $scope.$emit(Constants.SHOW_MENU_EVENT);
 
     }
+
+    UserCtrl.$inject = ['$rootScope', '$scope', 'Constants', 'CrudService', 'FormService', 'ConfirmService', 'UtilService'];
+
+    angular.module('user.controller', [])
+        .controller('UserCtrl', UserCtrl);
 
 }());

@@ -5,10 +5,11 @@ import java.util.List;
 import com.gvivies.cave.model.Region;
 
 public interface RegionService {
-	public List<Region> findAll();
-	public List<Region> findAllWithBottleCount();
-	public Region findOne(String id);
-	public void delete(Region region);
-	public Region save(Region region);
-	public Region insert(Region region);	
+	List<Region> findAll();
+	List<Region> findAllWithBottleCount();
+	Region findOne(String id);
+	void delete(Region region);
+	void deleteAllForUser(String owner);
+	Region save(Region region);
+	Region insert(Region region);	
 }

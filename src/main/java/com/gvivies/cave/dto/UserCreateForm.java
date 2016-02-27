@@ -1,8 +1,10 @@
-package com.gvivies.cave.model;
+package com.gvivies.cave.dto;
 
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.gvivies.cave.model.Role;
 
 public class UserCreateForm {
 

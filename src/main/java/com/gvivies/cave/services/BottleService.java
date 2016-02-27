@@ -5,10 +5,12 @@ import java.util.List;
 import com.gvivies.cave.model.Bottle;
 
 public interface BottleService {
-	public List<Bottle> findAll();
-	public Bottle findOne(String id);
-	public long countAll();
-	public void delete(Bottle bottle);
-	public Bottle save(Bottle bottle);
-	public Bottle insert(Bottle bottle);
+	List<Bottle> findAll();
+	List<Bottle> findAllOrdered();
+	Bottle findOne(String id);
+	long countAll();
+	void delete(Bottle bottle);
+	void deleteAllForUser(String owner);
+	Bottle save(Bottle bottle);
+	Bottle insert(Bottle bottle);
 }

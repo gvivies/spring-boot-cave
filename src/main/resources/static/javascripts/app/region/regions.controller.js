@@ -5,12 +5,6 @@
 
     'use strict';
 
-
-    angular.module('regions.controller', [])
-        .controller('RegionsCtrl', RegionsCtrl);
-
-    RegionsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService', '$location'];
-
     function RegionsCtrl($rootScope, CrudService, UtilService, Constants, $scope, $mdDialog, FormService, ConfirmService, $location) {
 
         var viewModel = this;
@@ -91,5 +85,10 @@
         $scope.$emit(Constants.SHOW_MENU_EVENT);
 
     }
+
+    RegionsCtrl.$inject = ['$rootScope', 'CrudService', 'UtilService', 'Constants', '$scope', '$mdDialog', 'FormService', 'ConfirmService', '$location'];
+
+    angular.module('regions.controller', [])
+        .controller('RegionsCtrl', RegionsCtrl);
 
 }());

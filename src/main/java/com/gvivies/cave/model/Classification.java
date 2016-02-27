@@ -3,7 +3,7 @@ package com.gvivies.cave.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-public class Classification {
+public class Classification extends Possessor {
 	
 	@Id
 	private String _id;
@@ -13,9 +13,10 @@ public class Classification {
 
 	public Classification() {}
 	
-	public Classification(String name) {
+	public Classification(String name, String ownedBy) {
 		super();
 		this.name = name;
+		this.ownedBy = ownedBy;
 	}
 	public final String getId() {
 		return _id;

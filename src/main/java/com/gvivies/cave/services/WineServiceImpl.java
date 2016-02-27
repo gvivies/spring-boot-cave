@@ -5,12 +5,9 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +20,6 @@ import com.gvivies.cave.repositories.WineRepository;
 @Service
 public class WineServiceImpl implements WineService {
 
-	private Log log = LogFactory.getLog(WineServiceImpl.class);
-
 	@Autowired
 	private WineRepository wineRepository;
 	
@@ -36,6 +31,9 @@ public class WineServiceImpl implements WineService {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public List<Wine> findAllByRegion(String region) {
@@ -52,29 +50,25 @@ public class WineServiceImpl implements WineService {
 
 	@Override
 	public List<Wine> findAll() {
-		List<Wine> wines = new ArrayList<Wine>();
-		List<Wine> winesOfRegion = mongoTemplate.find(orderedBy("name"), Wine.class);
-		wines.addAll(winesOfRegion);
+		String owner = userService.getAuthenticatedUserId();
+		List<Wine> wines = wineRepository.findByOwnedByOrderByName(owner);
 		addBottleCountTo(wines);
 		return wines;
 	}
-
-	private Query orderedBy(String col) {
-		return Query.query(new Criteria()).with(new Sort(Sort.Direction.ASC, col));	
-	}
 	
 	private List<Region> retrieveRegions(String region) {
+		String owner = userService.getAuthenticatedUserId();
 		List<Region> regions = new ArrayList<Region>();
 		if (region == null || region.isEmpty()) {
-			regions = regionRepository.findAll();
+			regions = regionRepository.findByOwnedByOrderByName(owner);
 		} else {
-			regions.add(regionRepository.findByName(region));
+			regions.add(regionRepository.findByNameAndOwnedBy(region, owner));
 		}
 		return regions;
 	}
 	
 	public List<Wine> findAllWithBottleCount() {
-		List<Wine> wines = wineRepository.findAll();
+		List<Wine> wines = findAll();
 		addBottleCountTo(wines);
 		return wines;
 	}
@@ -82,7 +76,7 @@ public class WineServiceImpl implements WineService {
 	private void addBottleCountTo(List<Wine> wines) {
 		List<Bottle> allBottles = bottleService.findAll();	
 		wines.forEach(c -> c.setQuantity(allBottles.stream() //
-				.filter(b -> c.getId().equals(b.getWine().getId())) //
+				.filter(b -> b.getWine() == null || c.getId().equals(b.getWine().getId())) //
 				.map(b -> b.getQuantity()) //
 				.mapToInt((x) -> x) //
 				.sum()));		
@@ -106,6 +100,11 @@ public class WineServiceImpl implements WineService {
 	@Override
 	public Wine insert(Wine wine) {
 		return wineRepository.insert(wine);
+	}
+	
+	@Override
+	public void deleteAllForUser(String owner) {
+		mongoTemplate.remove(Query.query(where("ownedBy").is(owner)), Wine.class);	
 	}
 
 }

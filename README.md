@@ -10,4 +10,8 @@ A Spring Boot & AngularJS application that manage the bottles of my cellar. Data
 * [http://angular-ui.github.io/angular-google-maps/](Angular Google Maps)
 * [https://material.angularjs.org/](Angular Material)
 
+## Pre requisites
 
+You need to install :
+* [https://www.java.com/fr/download/J Java 8
+* a local [https://www.mongodb.org/]MongoDb database named "cave"

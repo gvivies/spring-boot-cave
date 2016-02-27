@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
-public class Bottle {
+public class Bottle extends Possessor {
 	
 	@Id
 	private String _id;
@@ -20,11 +20,12 @@ public class Bottle {
 	private double price;
 	private String comment;
 	private Containing containing;
+	private boolean ordered;
 	
 	public Bottle() {}
 	
 	public Bottle(String name, Dealer dealer, Wine wine, Classification classification, int year, int yearMin,
-			int yearMax, int quantity, Date purchaseDate, double price, String comment, Containing containing) {
+			int yearMax, int quantity, Date purchaseDate, double price, String comment, Containing containing, String ownedBy) {
 		super();
 		this.name = name;
 		this.dealer = dealer;
@@ -38,6 +39,7 @@ public class Bottle {
 		this.price = price;
 		this.comment = comment;
 		this.containing = containing;
+		this.ownedBy = ownedBy;
 	}
 
 	public final String getId() {
@@ -118,6 +120,14 @@ public class Bottle {
 	public final void setContaining(Containing containing) {
 		this.containing = containing;
 	}
+	public final boolean isOrdered() {
+		return ordered;
+	}
+
+	public final void setOrdered(boolean ordered) {
+		this.ordered = ordered;
+	}
+
 	@Override
 	public String toString() {
         return String.format("Customer[id=%s, name='%s']", _id, name);	

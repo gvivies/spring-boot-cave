@@ -1,0 +1,49 @@
+<md-dialog class="app-dialog-{{form.size}}" aria-label="Détail de l'utilisateur" ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Détail de l'utilisateur</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="form.cancel()">
+                    <md-icon md-svg-src="/cave/images/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="row" layout-xs="column">
+            <div class="md-dialog-content app-dialog-content-small">
+                <md-input-container flex>
+                    <label>Nom</label>
+                    <input ng-model="form.item.username">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-content class="app-dialog-content-small" layout="row" layout-xs="column">
+            <md-input-container flex>
+                <label>Rôle</label>
+                <md-select ng-model="form.item.role" placeholder="Selectionner un rôle" required>
+                    <md-option ng-value="rol.id" ng-repeat="rol in form.lists['roles'] | orderBy:'roleName'">{{ rol.roleName }}</md-option>
+                </md-select>
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-content layout="row" layout-xs="column">
+            <div class="md-dialog-content app-dialog-content-small">
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input ng-model="form.item.email">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-content layout="row" layout-xs="column">
+            <div class="md-dialog-content app-dialog-content-small">
+                <md-input-container flex>
+                    <label>Password</label>
+                    <input ng-model="form.item.password" type="password">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions class="md-actions" layout="row" layout-align="space-around center">
+            <md-button ng-click="form.cancel()">Annuler</md-button>
+            <md-button ng-click="form.save()" style="margin-right:20px;">Enregistrer</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
